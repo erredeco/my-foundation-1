@@ -1,1 +1,8 @@
 .sass-cache
+.DS_Store
+.sass-cache/*
+
+dist
+
+bower_components
+node_modules
