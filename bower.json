@@ -1,0 +1,27 @@
+{
+  "name": "My-foundation-1",
+  "version": "0.0.0",
+  "homepage": "https://github.com/erredeco/my-foundation-1",
+  "description": "first try to assemble with bower and grunt",
+  "keywords": [
+    "prova my-foundation-1"
+  ],
+  "authors": [
+    "Riccardo De Contardi"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": ">= 2.7.2",
+    "jquery": ">= 2.1.0",
+    "bower-foundation": "https://github.com/zurb/bower-foundation.git#v5.5.0"
+
+  }
+}

@@ -1,6 +1,7 @@
 .sass-cache
 .DS_Store
-.sass-cache/*
+*.sublime-workspace
+*.sublime-project
 
 dist
 
