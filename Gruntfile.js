@@ -28,29 +28,30 @@ module.exports = function (grunt) {
     },
 
     //Get components from bower
-    bowercopy: {
-      options: {            
-        srcPrefix: '<%= vendor %>',
-        clean: false
-      },
-
-      // Javascript libraries
-      libs: {
+    bower: {
+      install: {
         options: {
-          destPrefix: './dist/assets/js/vendor'
-        },
-        files: {
-          'jquery.js': 'jquery/dist/jquery.js',
-          'modernizr.js': 'modernizr/modernizr.js',
-          'foundation': 'bower-foundation/js/foundation'
-          },
-      },
+          copy: false    
+
+        }
+      }
+    },
+
+    copy: {
+      dist: {
+        files: [
+          {src: './<%= vendor %>/modernizr/modernizr.js', dest: './dist/assets/js/modernizr.js'},
+          {expand:true, cwd: '<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: 'dist/assets/js', filter: 'isFile'},
+          {src: './<%= vendor %>/jquery/dist/jquery.js', dest: './dist/assets/js/jquery.js'}
+        
+        ]
+      }
     },
 
     concat: {
       dist: {
         files: {
-          'dist/assets/js/vendor/foundation.js':'<%= foundation.js %>'
+          'dist/assets/js/foundation.js':'<%= foundation.js %>'
         }
       }
     },
@@ -62,8 +63,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           './dist/assets/js/foundation.min.js': ['<%= foundation.js %>'],
-          './dist/assets/js/modernizr.min.js': ['<%= vendor %>/modernizr/modernizr.js'],
-          './dist/assets/js/jquery.min.js': ['<%= vendor %>/jquery/dist/jquery.js']
+          './dist/assets/js/modernizr.min.js': ['./dist/assets/js/modernizr.js'],
+          './dist/assets/js/jquery.min.js': ['./dist/assets/js/jquery.js']
         }
       },
 
@@ -91,7 +92,7 @@ module.exports = function (grunt) {
 
       js: {
         files: ['<%= vendor %>/**/*.js', 'dist/assets/js/**/*.js'],
-        tasks: ['bowercopy','concat','uglify'],
+        tasks: ['copy','concat','uglify'],
         options: {livereload:true}
       },
 
@@ -114,17 +115,18 @@ module.exports = function (grunt) {
   /* load plugin in package.json */
 
   grunt.loadNpmTasks('assemble');
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-contrib-clean'); 
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect'); 
+  grunt.loadNpmTasks('grunt-contrib-copy'); 
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks( 'grunt-contrib-watch' );  
   grunt.loadNpmTasks('grunt-newer');
-  grunt.loadNpmTasks('grunt-bowercopy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-
+  
   /* grunt tasks */
   //see the foundation example on how to add other tasks here!!
-  grunt.registerTask('build:assets', ['clean','bowercopy','concat','uglify']); 
+  grunt.registerTask('build:assets', ['clean','bower:install','copy','concat','uglify']); 
   grunt.registerTask('build', ['build:assets', 'assemble']);
   grunt.registerTask('default', ['build', 'watch']);
   grunt.registerTask('server', ['connect:dist:keepalive']);
