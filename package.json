@@ -11,7 +11,8 @@
     "url": "https://github.com/erredeco/my-foundation-1"
   },
   "keywords": [
-    "prova"
+    "prova",
+    "handlebars-helper-rel"
   ],
   "author": "Riccardo De Contardi",
   "license": "ISC",
