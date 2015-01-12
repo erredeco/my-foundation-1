@@ -41,12 +41,25 @@ module.exports = function (grunt) {
       dist: {
         files: [
           {src: './<%= vendor %>/modernizr/modernizr.js', dest: './dist/assets/js/modernizr.js'},
-          {expand:true, cwd: '<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: 'dist/assets/js', filter: 'isFile'},
+          {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: './dist/assets/js', filter: 'isFile'},
           {src: './<%= vendor %>/jquery/dist/jquery.js', dest: './dist/assets/js/jquery.js'}
-        
+
+        ]
+      },
+      scss: {
+        files: [
+          {expand:true, cwd: './<%= vendor %>/myfoundation-scss-only/source/', src: ['scss/**/*.scss'], dest: './source/'},
+          {src:'./<%= vendor %>/myfoundation-scss-only/Gemfile',dest:'./Gemfile'},
+          {src:'./<%= vendor %>/myfoundation-scss-only/Gemfile.lock',dest:'./Gemfile.lock'}
+
         ]
       }
     },
+
+
+
+
+
 
     concat: {
       dist: {
@@ -91,7 +104,7 @@ module.exports = function (grunt) {
       },
 
       js: {
-        files: ['<%= vendor %>/**/*.js', 'dist/assets/js/**/*.js'],
+        files: ['dist/assets/js/**/*.js'],
         tasks: ['copy','concat','uglify'],
         options: {livereload:true}
       },
