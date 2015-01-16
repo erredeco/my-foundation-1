@@ -4,8 +4,11 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 ##Installation instructions
 ####Install Ruby
 gem install sass
+
 gem install compass
+
 gem install bundler
+
 bundle
 
 ####Install Grunt and Bower:
@@ -15,6 +18,12 @@ npm install -g grunt-cli bower
 
 
 ##Running instructions
+
 npm install
+
 grunt
+
+grunt server to launch server
+
+bundle exec compass watch to build css from sass source
 
