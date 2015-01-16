@@ -4,27 +4,28 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('./package.json'),
     vendor: grunt.file.readJSON('.bowerrc').directory,
+    sourcedir: './source',
     foundation: {
-          js: ['./<%= vendor %>/bower-foundation/js/foundation/foundation.js', './<%= vendor %>/bower-foundation/js/foundation/foundation.*.js']
+          js: ['<%= sourcedir %>/assets/js/vendor/foundation/foundation.js', '<%= sourcedir %>/assets/js/vendor/foundation/foundation.*.js']
         },
 
     assemble: {
       options: {
         flatten: false,
         assets: './dist/assets',
-        partials: ['./source/includes/partials/**/*.{html,hbs}'],
-        layoutdir: './source/layouts',
+        partials: ['<%= sourcedir %>/includes/partials/**/*.{html,hbs}'],
+        layoutdir: '<%= sourcedir %>/layouts',
         layout: 'index.html'
       },
       pages: {
         expand: true,
-        cwd: './source/pages',
+        cwd: '<%= sourcedir %>/pages',
         src: '**/*.{html,hbs}',
         dest: './dist/'
       },
       samples: {
         expand: true,
-        cwd: './source/samples',
+        cwd: '<%= sourcedir %>/samples',
         src: '**/*.{html,hbs}',
         dest: './dist/samples/'
       }
@@ -44,14 +45,14 @@ module.exports = function (grunt) {
     copy: {
       dist: {
         files: [
-          {src: './<%= vendor %>/modernizr/modernizr.js', dest: './dist/assets/js/modernizr.js'},
-          {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: './dist/assets/js', filter: 'isFile'},
-          {src: './<%= vendor %>/jquery/dist/jquery.js', dest: './dist/assets/js/jquery.js'}
+          {src: './<%= vendor %>/modernizr/modernizr.js', dest: '<%= sourcedir %>/assets/js/vendor/modernizr.js'},
+          {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: './source/assets/js/vendor/', filter: 'isFile'},
+          {src: './<%= vendor %>/jquery/dist/jquery.js', dest: '<%= sourcedir %>/assets/js/vendor/jquery.js'}
         ]
       },
       scss: {
         files: [
-          {expand:true, cwd: './<%= vendor %>/myfoundation-scss-only/source/', src: ['scss/**/*.scss'], dest: './source/assets/'},
+          {expand:true, cwd: './<%= vendor %>/myfoundation-scss-only/source/', src: ['scss/**/*.scss'], dest: '<%= sourcedir %>/assets/'},
           {src:'./<%= vendor %>/myfoundation-scss-only/Gemfile',dest:'./Gemfile'},
           {src:'./<%= vendor %>/myfoundation-scss-only/Gemfile.lock',dest:'./Gemfile.lock'}
 
@@ -62,7 +63,7 @@ module.exports = function (grunt) {
     concat: {
       dist: {
         files: {
-          'dist/assets/js/foundation.js':'<%= foundation.js %>'
+          '<%= sourcedir %>/assets/js/vendor/foundation.js':'<%= foundation.js %>'
         }
       }
     },
@@ -74,9 +75,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           './dist/assets/js/foundation.min.js': ['<%= foundation.js %>'],
-          './dist/assets/js/modernizr.min.js': ['./dist/assets/js/modernizr.js'],
-          './dist/assets/js/jquery.min.js': ['./dist/assets/js/jquery.js'],
-          './dist/assets/js/app.min.js': ['./source/assets/js/app.js']
+          './dist/assets/js/modernizr.min.js': ['<%= sourcedir %>/assets/js/vendor/modernizr.js'],
+          './dist/assets/js/jquery.min.js': ['<%= sourcedir %>/assets/js/vendor/jquery.js'],
+          './dist/assets/js/app.min.js': ['<%= sourcedir %>/assets/js/app.js']
         }
       },
 
@@ -101,7 +102,7 @@ module.exports = function (grunt) {
     connect: {
       dist: {
         options: {
-          port: 8080,
+          port: 8090,
           base: './dist/',
           hostname: 'localhost'
         }
@@ -117,26 +118,22 @@ module.exports = function (grunt) {
       },
 
       js: {
-        files: ['dist/assets/js/**/*.js'],
-        tasks: ['copy','concat','uglify'],
+        files: ['<%= sourcedir %>/assets/js/**/*.js'],
+        tasks: ['concat','uglify'],
         options: {livereload:true}
       },
 
 
       assemble_all: {
-        files: ['./source/{includes,layouts}/**/*.html'],
-        tasks: ['assemble'],
+        files: ['./source/**/*.html'],
+        tasks: ['assemble','newer:assemble'],
         options: {livereload:true}
       },
-      assemble_pages: {
-        files: ['./source/pages/**/*.html','./source/samples/**/*.html'],
-        tasks: ['newer:assemble'],
-        options: {livereload:true}
-      },
+
       
       prettify: {
         files: ['./dist/**/*.html'],
-        tasks: ['newer:prettify:all'],
+        tasks: ['prettify:all','newer:prettify:all'],
         options: {livereload:true}
       },
 
