@@ -2,8 +2,15 @@ module.exports = function (grunt) {
   'use strict';
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('./package.json'),
     vendor: grunt.file.readJSON('.bowerrc').directory,
+    pkg: {
+      mine: grunt.file.readJSON('./package.json'),
+      jquery: grunt.file.readJSON('bower_components/jquery/bower.json'),
+      foundationjs: grunt.file.readJSON('bower_components/bower-foundation/bower.json'),
+      modernizr: grunt.file.readJSON('bower_components/modernizr/.bower.json'),
+    },
+
+
     sourcedir: './source',
     foundation: {
           js: ['<%= sourcedir %>/assets/js/vendor/foundation/foundation.js', '<%= sourcedir %>/assets/js/vendor/foundation/foundation.*.js']
@@ -42,7 +49,7 @@ module.exports = function (grunt) {
     },
 
     copy: {
-      dist: {
+      js: {
         files: [
           {src: './<%= vendor %>/modernizr/modernizr.js', dest: '<%= sourcedir %>/assets/js/vendor/modernizr.js'},
           {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: '<%= sourcedir %>/assets/js/vendor/', filter: 'isFile'},
@@ -60,7 +67,7 @@ module.exports = function (grunt) {
     },
 
     concat: {
-      dist: {
+      foundationjs: {
         files: {
           '<%= sourcedir %>/assets/js/vendor/foundation.js':'<%= foundation.js %>'
         }
@@ -71,7 +78,7 @@ module.exports = function (grunt) {
       options: {
         preserveComments: 'some'
       },
-      dist: {
+      js: {
         files: {
           './dist/assets/js/foundation.min.js': ['<%= foundation.js %>'],
           './dist/assets/js/modernizr.min.js': ['<%= sourcedir %>/assets/js/vendor/modernizr.js'],
@@ -118,7 +125,7 @@ module.exports = function (grunt) {
 
       js: {
         files: ['<%= sourcedir %>/assets/js/**/*.js'],
-        tasks: ['concat','uglify'],
+        tasks: ['concat','uglify','newer:concat','newer:uglify'],
         options: {livereload:true}
       },
 
@@ -158,8 +165,11 @@ module.exports = function (grunt) {
   
   /* grunt tasks */
   //see the foundation example on how to add other tasks here!!
-  grunt.registerTask('build:assets', ['clean','bower:install','copy','concat','uglify']); 
-  grunt.registerTask('build', ['build:assets', 'assemble','prettify']);
-  grunt.registerTask('default', ['build', 'watch']);
+  //grunt.registerTask('clean');
+
+  grunt.registerTask('inizialize',['clean','bower:install','copy']);
+  grunt.registerTask('build:assets', ['concat','uglify']); 
+  grunt.registerTask('build:pages', ['assemble','prettify']);
+  grunt.registerTask('default', ['build:assets', 'build:pages', 'watch']);
   grunt.registerTask('server', ['connect:dist:keepalive']);
 };

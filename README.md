@@ -21,9 +21,21 @@ npm install -g grunt-cli bower (*)
 
 npm install (*)
 
-grunt
+## available commands with grunt:
 
-grunt server to launch server
+- grunt clean
+	- deletes ./dist
+- grunt inizialize
+	- performs clean, downloads dependencies from bower, copies relevant js and scss files to source folder
+- grunt build:assets
+	- 	concat the foundation assets from source and uglifies them in dist folder
+- grunt build:pages
+	- build pages and prettify them into dist folder
+- grunt
+	- default task: shortcut for build:assets & build:pages
+
+- grunt server
+	- launch server
 
 bundle exec compass watch to build css from sass source
 
