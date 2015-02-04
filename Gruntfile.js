@@ -8,7 +8,6 @@ module.exports = function (grunt) {
     foundation: {
           js: ['<%= sourcedir %>/assets/js/vendor/foundation/foundation.js', '<%= sourcedir %>/assets/js/vendor/foundation/foundation.*.js']
         },
-
     assemble: {
       options: {
         flatten: false,
@@ -46,7 +45,7 @@ module.exports = function (grunt) {
       dist: {
         files: [
           {src: './<%= vendor %>/modernizr/modernizr.js', dest: '<%= sourcedir %>/assets/js/vendor/modernizr.js'},
-          {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: './source/assets/js/vendor/', filter: 'isFile'},
+          {expand:true, cwd: './<%= vendor %>/bower-foundation/js/', src: ['foundation/*.js'], dest: '<%= sourcedir %>/assets/js/vendor/', filter: 'isFile'},
           {src: './<%= vendor %>/jquery/dist/jquery.js', dest: '<%= sourcedir %>/assets/js/vendor/jquery.js'}
         ]
       },

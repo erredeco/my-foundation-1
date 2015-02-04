@@ -21,7 +21,7 @@
   "dependencies": {
     "modernizr": ">= 2.7.2",
     "jquery": ">= 2.1.0",
-    "bower-foundation": "https://github.com/zurb/bower-foundation.git#v5.5.0",
+    "bower-foundation": "https://github.com/zurb/bower-foundation.git#master",
     "myfoundation-scss-only": "https://github.com/erredeco/myfoundation-scss-only.git#master"
   }
 }
