@@ -6,7 +6,7 @@
 prova.*
 
 dist
-
+bck
 bower_components
 node_modules
 source/assets/scss

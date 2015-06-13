@@ -14,7 +14,7 @@ module.exports = {
       dest: '<%= paths.dist %>assets/js',
       filter: 'isFile'
     },{
-      src: '<%= paths.vendor %>jquery/jquery.min.js',
+      src: '<%= paths.vendor %>jquery/dist/jquery.min.js',
       dest: '<%= paths.dist %>/assets/js/jquery.min.js'
     },{
 
