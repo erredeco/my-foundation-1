@@ -1,19 +1,22 @@
 module.exports = function(grunt) {
   // Define project configuration
   var project = {
+    date: grunt.template.today("yyyy-mm-dd-HH.MM.ss"), 
     paths: {
       get config() {
         return this.grunt + 'config/';
       },
+      bckdir: 'bck/', 
       dist: 'dist/',
-      source: 'source/',
       grunt: 'grunt/',
-      js: 'js/',
+      js: '<%= paths.vendor%>bower-foundation/js/',      
+      
       sassLoad: __dirname + '/scss',
-      scss: 'scss/',
-
+      scss: '<%= paths.vendor%>myfoundation-scss-only/source/',
+      source: 'source/',
+      templates: 'templates/',
       //non so se questo spec serve a qualcosa a me
-      spec: 'spec/',
+      //spec: 'spec/',
       vendor: grunt.file.readJSON('.bowerrc').directory + '/'
     },
     files: {
@@ -21,8 +24,10 @@ module.exports = function(grunt) {
         return project.paths.config + '*.js';
       },
       grunt: 'Gruntfile.js',
-      js: ['js/foundation/foundation.js', 'js/foundation/*.js'],
-      scss: ['scss/foundation.scss', 'scss/settings.scss']
+      js: grunt.file.readJSON('foundationfiles.json').js,
+      scss: grunt.file.readJSON('foundationfiles.json').scss
+
+      //scss: ['scss/foundation.scss', 'scss/settings.scss']
     },
     pkg: grunt.file.readJSON('package.json')
   };

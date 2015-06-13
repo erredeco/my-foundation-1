@@ -7,28 +7,28 @@ module.exports = {
     files: ['Gruntfile.js']
   },
   sass: {
-    files: ['<%= paths.scss %>**/*.scss', '<%= paths.doc %>assets/**/*.scss'],
+    files: ['<%= paths.scss %>**/*.scss', '<%= paths.source %>assets/**/*.scss'],
     tasks: ['sass'],
     options: {
       livereload:true
     }
   },
   js: {
-    files: ['<%= paths.js %>**/*.js', '<%= paths.doc %>assets/js/**/*.js'],
+    files: ['<%= paths.js %>**/*.js', '<%= paths.source %>assets/js/**/*.js'],
     tasks: ['copy', 'concat', 'uglify'],
     options: {
       livereload: true
     }
   },
   assemble_all: {
-    files: ['<%= paths.source %>{includes,layouts}/**/*.html'],
+    files: ['<%= paths.template %>{includes,layouts}/**/*.html'],
     tasks: ['assemble'],
     options: {
       livereload: true
     }
   },
   assemble_pages: {
-    files: ['<%= paths.source %>pages/**/*.html'],
+    files: ['<%= paths.template %>pages/**/*.html'],
     tasks: ['newer:assemble'],
     options: {
       livereload: true

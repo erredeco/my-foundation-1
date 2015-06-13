@@ -5,12 +5,14 @@ module.exports = {
   dist: {
     options: {
       loadPath: ['<%= paths.sassLoad %>'],
-      bundleExec: true
+      bundleExec: true,
+      compass: true,
+      lineNumbers:true
     },
     files: {
-      '<%= paths.dist %>assets/css/foundation.css': '<%= files.scss %>',
-      '<%= paths.dist %>assets/css/normalize.css': '<%= paths.scss %>normalize.scss',
-      '<%= paths.dist %>docs/assets/css/docs.css': '<%= paths.doc %>assets/scss/docs.scss'
+      //'<%= paths.dist %>assets/css/foundation.css': '<%= files.scss %>',
+      '<%= paths.dist %>assets/css/normalize.css': '<%= paths.source %>assets/scss/normalize.scss',
+      '<%= paths.dist %>assets/css/app.css': '<%= paths.source %>assets/scss/app.scss'
     }
   }
 };

@@ -15,17 +15,15 @@ module.exports = {
       filter: 'isFile'
     },{
       src: '<%= paths.vendor %>jquery/jquery.min.js',
-      dest: '<%= paths.dist %>/assets/js/jquery.js'
+      dest: '<%= paths.dist %>/assets/js/jquery.min.js'
     },{
-      
-      //questo andrà cambiato
-      //i miei dovrebbero essere in <%= paths.vendor%>/myfoundation-scss-only/source/
+
       //inoltre ti dovresti copiare anche i gemfile e gemfile.lock
 
       expand: true,
       cwd: '<%= paths.scss %>',
       src: '**/*.scss',
-      dest: '<%= paths.dist %>assets/',
+      dest: '<%= paths.source %>assets/',
       filter: 'isFile'
     },{
       src:'./<%= paths.vendor %>/myfoundation-scss-only/Gemfile',
@@ -39,5 +37,17 @@ module.exports = {
       //src: ['bower.json', 'package.json'],
       //dest: '<%= paths.dist %>assets/'
     }]
-  }
+  },
+
+      //use this to backup scss and foundation javascript  files into another folder
+      //please take note that you must do a diff after the update
+      backup: { 
+      files: [{
+            expand:true, 
+            cwd: './<%= paths.source %>/', 
+            src: ['./**/*.*'], 
+            dest: '<%= paths.bckdir %>/<%= date%>-version<%= pkg.version%>'
+          }]            
+      }
+
 };
