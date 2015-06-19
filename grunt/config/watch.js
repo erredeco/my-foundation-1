@@ -15,7 +15,7 @@ module.exports = {
   },
   js: {
     files: ['<%= paths.js %>**/*.js', '<%= paths.source %>assets/js/**/*.js'],
-    tasks: ['copy', 'concat', 'uglify'],
+    tasks: ['copy:dist', 'concat', 'uglify'],
     options: {
       livereload: true
     }
