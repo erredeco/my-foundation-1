@@ -21,14 +21,14 @@ module.exports = {
     }
   },
   assemble_all: {
-    files: ['<%= paths.template %>{includes,layouts}/**/*.html'],
+    files: ['<%= paths.templates %>{includes,layouts}/**/*.html'],
     tasks: ['assemble'],
     options: {
       livereload: true
     }
   },
   assemble_pages: {
-    files: ['<%= paths.template %>pages/**/*.html'],
+    files: ['<%= paths.templates %>pages/**/*.html'],
     tasks: ['newer:assemble'],
     options: {
       livereload: true
