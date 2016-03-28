@@ -1,45 +1,52 @@
 // https://github.com/gruntjs/grunt-contrib-watch
+var config = require('../config');
+
+
 module.exports = {
   grunt: {
     options: {
-      reload: true
+      reload: true,
     },
-    files: ['Gruntfile.js']
-  },
-  sass: {
-    files: ['<%= paths.scss %>**/*.scss', '<%= paths.source %>assets/**/*.scss'],
-    tasks: ['sass'],
-    options: {
-      livereload:true
-    }
+    files: 'Gruntfile.js',
+    tasks: 'build'
   },
   js: {
-    files: ['<%= paths.js %>**/*.js', '<%= paths.source %>assets/js/**/*.js'],
-    tasks: ['copy:dist', 'concat', 'uglify'],
-    options: {
-      livereload: true
-    }
+    files: [config.sourcedir+'assets/js/**/*.js', './grunt/config.js'],
+    tasks: ['concat','newer:concat','babel','uglify','newer:uglify']       
+  },    
+
+  compass: {
+    files: config.sourcedir+'scss/**/*.scss',
+    tasks: ['compass:dist','newer:compass:dist']
+
   },
+  postcss: {
+    files: config.destinationdir+'assets/css/*.css',
+    tasks: ['postcss:dist','newer:postcss:dist']
+
+  },
+
   assemble_all: {
-    files: ['<%= paths.templates %>{includes,layouts}/**/*.html'],
-    tasks: ['assemble'],
+    files: [config.sourcedir+'{includes,pages,layouts}/**/*.html',config.datadir+'*.json'],
+    tasks: ['assemble','newer:assemble'],
     options: {
       livereload: true
     }
   },
-  assemble_pages: {
-    files: ['<%= paths.templates %>pages/**/*.html'],
-    tasks: ['newer:assemble'],
-    options: {
-      livereload: true
-    }
-  },
+
   assets: {
     options: {
-      cwd: '<%= paths.source %>assets/',
+      cwd: config.sourcedir+'assets/',
       livereload: true
     },
     files: ['**/*', '!{scss,js}/**/*'],
-    tasks: ['copy']
-  },
+    tasks: ['copy:dist']
+  } 
 };
+
+
+
+
+ 
+
+

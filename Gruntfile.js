@@ -6,28 +6,13 @@ module.exports = function(grunt) {
       get config() {
         return this.grunt + 'config/';
       },
-      bckdir: 'bck/', 
-      dist: 'dist/',
-      grunt: 'grunt/',
-      js: '<%= paths.vendor%>bower-foundation/js/',      
-      
-      sassLoad: __dirname + '/scss',
-      scss: '<%= paths.vendor%>myfoundation-scss-only/source/',
-      source: 'source/',
-      templates: 'templates/',
-      //non so se questo spec serve a qualcosa a me
-      //spec: 'spec/',
-      vendor: grunt.file.readJSON('.bowerrc').directory + '/'
+      grunt: 'grunt/'
     },
     files: {
       get config() {
         return project.paths.config + '*.js';
       },
-      grunt: 'Gruntfile.js',
-      js: grunt.file.readJSON('foundationfiles.json').js,
-      scss: grunt.file.readJSON('foundationfiles.json').scss
-
-      //scss: ['scss/foundation.scss', 'scss/settings.scss']
+      grunt: 'Gruntfile.js'
     },
     pkg: grunt.file.readJSON('package.json')
   };

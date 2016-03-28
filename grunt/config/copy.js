@@ -1,53 +1,60 @@
 // https://github.com/gruntjs/grunt-contrib-copy
+
+var config = require('../config');
+
 module.exports = {
   dist: {
     files: [{
-      expand: true,
-      cwd: '<%= paths.source %>assets/',
-      src: ['**/*','!{scss,js}/**/*'],
-      dest: '<%= paths.dist %>/assets/',
+      src: config.bowerdir+'jquery/dist/jquery.min.js',
+      dest: config.destinationdir+'assets/js/vendor/jquery.min.js'
+    },
+    {         
+      expand:true,
+      cwd: config.sourcedir+'assets/',
+      src: ['**/*', '!{scss,js}/**/*'],
+      dest: config.destinationdir+'assets/',  
       filter: 'isFile'
-    },{
-      expand: true,
-      cwd: '<%= paths.js %>',
-      src: ['foundation/*.js'],
-      dest: '<%= paths.dist %>assets/js',
-      filter: 'isFile'
-    },{
-      src: '<%= paths.vendor %>jquery/dist/jquery.min.js',
-      dest: '<%= paths.dist %>/assets/js/jquery.min.js'
-    },{
-
-      //inoltre ti dovresti copiare anche i gemfile e gemfile.lock
-
-      expand: true,
-      cwd: '<%= paths.scss %>',
-      src: '**/*.scss',
-      dest: '<%= paths.source %>assets/',
-      filter: 'isFile'
-    },{
-      src:'./<%= paths.vendor %>/myfoundation-scss-only/Gemfile',
-      dest:'./Gemfile'
-    },{
-      src:'./<%= paths.vendor %>/myfoundation-scss-only/Gemfile.lock',
-      dest:'./Gemfile.lock'
-
-      //non ho idea del perchè faccia questo
-      //io lo salto kkk (ricordati le graffe!)
-      //src: ['bower.json', 'package.json'],
-      //dest: '<%= paths.dist %>assets/'
     }]
   },
 
-      //use this to backup scss and foundation javascript  files into another folder
-      //please take note that you must do a diff after the update
-      backup: { 
-      files: [{
-            expand:true, 
-            cwd: './<%= paths.source %>/', 
-            src: ['./**/*.*'], 
-            dest: '<%= paths.bckdir %>/<%= date%>-version<%= pkg.version%>'
-          }]            
-      }
+  local: {
+    files: [{
+      expand:true, 
+      cwd: config.foundationdir, 
+      src: ['scss/settings/_settings.scss'], 
+      dest: config.sourcedir
+      },{
+      expand:true, 
+      cwd: config.mydir, 
+      src: ['**/*.*'], 
+      dest: config.sourcedir
+      }]
+  },
 
+  update: {
+    files: [{
+      // copy the configuration file from foundation dir to sourcedir
+      expand:true, 
+      cwd: config.foundationdir, 
+      src: ['scss/settings/_settings.scss'], 
+      dest:config.sourcedir     
+    }]
+
+  },
+
+  //use this to backup scss and  javascript  files into another folder
+  //please take note that you must do a diff after the update
+  backup: { 
+    files: [{
+      expand:true, 
+      cwd: config.sourcedir, 
+      src: ['./**/*.*'], 
+      dest: config.bckdir+'<%= date%>-version<%= pkg.version%>/source/'
+    }]
+  }  
 };
+
+
+
+
+

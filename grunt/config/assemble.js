@@ -1,21 +1,24 @@
 // https://github.com/assemble/assemble/
+
+var config = require('../config');
+
 module.exports = {
   dist: {
     options: {
       flatten: false,
-      assets: '<%= paths.dist %>/assets',
+      assets: config.destinationdir+'/assets',
       //non so a cosa serve
       //data: ['<%= paths.templates %>data/*.json'],
       
       //non so a cosa serve
       //helpers: ['<%= paths.templates %>helpers/*.js'],
-      partials: ['<%= paths.templates %>includes/**/*.{html,hbs}'],
-      layoutdir: '<%= paths.templates %>layouts',
+      partials: [config.templatesdir+'includes/**/*.{html,hbs}'],
+      layoutdir: config.templatesdir+'layouts',
       layout: 'index.html'
     },
     expand: true,
-    cwd: '<%= paths.templates %>pages',
+    cwd: config.templatesdir+'pages',
     src: '**/*.{html,md}',
-    dest: '<%= paths.dist %>pages/'
+    dest: config.destinationdir+'pages/'
   }
 };

@@ -2,8 +2,17 @@
 ---
 
 #Initialise repositories
-initialise:
+initialize:
+  - 'devUpdate:main'
   - 'bower:install'
+  - 'copy:local'
+
+#updates all grunt dependencies (including foundation)
+update:
+  - 'devUpdate:main'
+  - 'bower:install'
+  - 'copy:update'
+
 cleaner:
   - 'clean'
 #Backup things
@@ -15,11 +24,13 @@ build:
   - 'assemble'
 # Build assets
 'build:assets':
+  - 'modernizr'
   - 'copy:dist'
-  - 'sass'
-  - 'concat'
+  - 'concat:foundation'
+  - 'babel:foundation'
   - 'uglify'
-  - 'string-replace'
+  - 'compass'
+  - 'postcss'  
 
 # Deploy
 deploy:

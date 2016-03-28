@@ -1,8 +1,15 @@
 // https://github.com/gruntjs/grunt-contrib-concat
-module.exports = {
-  dist: {
-    files: {
-      '<%= paths.dist %>assets/js/foundation.js': '<%= files.js %>'
-    }
-  }
+var config = require('../config');
+
+
+module.exports = { 
+    options: {
+        sourceMap: false
+    }, 
+  	foundation: {
+    	files:[{
+      		src: [config.foundationjs], 
+      		dest: config.tempjsdir+'foundation.all.js'
+      	}]
+	}
 };

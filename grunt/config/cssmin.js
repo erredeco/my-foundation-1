@@ -1,11 +1,14 @@
 // https://github.com/gruntjs/grunt-contrib-cssmin
+
+var config = require('../config');
+
 module.exports = {
   dist: {
     files: [{
       expand: true,
-      cwd: '<%= paths.dist %>assets/css',
+      cwd: config.destinationdir+'assets/css',
       src: ['*.css', '!*.min.css'],
-      dest: '<%= paths.dist %>assets/css',
+      dest: config.destinationdir+'assets/css',
       ext: '.min.css'
     }]
   }

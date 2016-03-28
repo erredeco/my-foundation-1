@@ -1,33 +1,8 @@
 {
   "name": "My-foundation-1",
-  "version": "0.0.14",
-  "description": "prova",
+  "version": "0.0.2",
+  "description": "my foundation stack",
   "main": "./dist/index.html",
-  "devDependencies": {
-    "assemble": "~0.4.42",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
-    "grunt-bower-task": "^0.4.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-compress": "^0.7.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-cssmin": "^0.12.2",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-uglify": "^0.7.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-newer": "^1.0.0",
-
-    "grunt-prettify": "^0.4.0",
-    
-    "grunt-rsync": "~0.2.1",
-    "grunt-string-replace": "~0.2.7",
-    "handlebars-helper-rel": "~0.1.2",
-    "handlebars-helper-slugify": "~0.2.0",
-    "load-grunt-config": "~0.16.0"   
-  },
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -44,6 +19,41 @@
   "bugs": {
     "url": "https://github.com/erredeco/my-foundation-1/issues"
   },
-  "homepage": "https://github.com/erredeco/my-foundation-1"
-
+  "homepage": "https://github.com/erredeco/my-foundation-1",
+  "devDependencies": {
+    "autoprefixer": "^6.3.4",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoped-functions": "^6.3.13",
+    "babel-plugin-transform-es2015-block-scoping": "^6.7.1",
+    "babel-plugin-transform-es2015-classes": "^6.3.15",
+    "babel-plugin-transform-es2015-destructuring": "^6.3.15",
+    "babel-plugin-transform-es2015-parameters": "^6.7.0",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.5.0",
+    "babel-plugin-transform-es2015-spread": "^6.4.0",
+    "babel-plugin-transform-es2015-template-literals": "^6.3.13",
+    "babel-preset-es2015": "^6.6.0",
+    "foundation-sites": "^6.2.0",
+    "grunt": "^0.4.5",
+    "grunt-assemble": "^0.4.0",
+    "grunt-babel": "^6.0.0",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.1",  
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dev-update": "^1.4.0",
+    "grunt-modernizr": "^1.0.2",
+    "grunt-newer": "^1.1.2",
+    "grunt-postcss": "^0.8.0",
+    "grunt-prettify": "^0.4.0",
+    "grunt-string-replace": "^1.2.1",
+    "handlebars-helper-rel": "^0.2.0",    
+    "load-grunt-config": "^0.19.1",
+    "jit-grunt": "^0.10.0",
+    "motion-ui": "^1.2.2"
+  }
 }

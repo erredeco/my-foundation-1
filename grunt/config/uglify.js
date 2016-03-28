@@ -1,28 +1,24 @@
 // https://github.com/gruntjs/grunt-contrib-uglify
+
+var config = require('../config');
 module.exports = {
-  options: {
-    preserveComments: 'some'
-  },
-  dist: {
-    files: {
-      
-      //così non va bene! devo vedere!
+    options: {
+        preserveComments: false,
+        compress: true
+    },                      
+    js: {
+      files:[{ 
+          src: [config.sourcedir+'assets/js/foundation.babelized.js',config.appjs],
+          dest: config.destinationdir+'assets/js/all.min.js'   
 
-      '<%= paths.dist %>assets/js/foundation.min.js': ['<%= files.js %>'],
-      '<%= paths.dist %>assets/js/modernizr.min.js': ['<%= paths.vendor %>modernizr/modernizr.js'],
-      '<%= paths.dist %>assets/js/all.min.js': [
-        //non voglio concatenare jquery al resto!
-        //'<%= paths.vendor %>jquery/dist/jquery.js', 
-        '<%= files.js %>', '<%= paths.source %>assets/js/app.js'
-      ]
-    }
-  },
-  //mi sembra inutile!
 
-  //vendor: {
-  //  files: {
-    //  '<%= paths.dist %>assets/js/vendor/jquery.js': '<%= paths.vendor %>jquery/dist/jquery.js',
-    //  '<%= paths.dist %>assets/js/vendor/modernizr.min.js': '<%= paths.vendor %>modernizr/modernizr.js'
-  //  }
-  //}
+      /*  better separate the foundation files from the others?  
+          src: config.sourcedir+'assets/js/foundation.babelized.js', dest: config.destinationdir+'assets/js/vendor/foundation.min.js'
+
+        },{
+          src: [config.appjs], dest: config.destinationdir+'assets/js/app.min.js'  
+        */
+        }] 
+  }
+
 };
