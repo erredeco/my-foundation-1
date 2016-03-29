@@ -13,7 +13,12 @@ module.exports = {
   js: {
     files: [config.sourcedir+'assets/js/**/*.js', './grunt/config.js'],
     tasks: ['concat','newer:concat','babel','uglify','newer:uglify']       
-  },    
+  },
+  
+  modernizr:{
+    files: ['./grunt/config/modernizr.js'], 
+    tasks: ['modernizr']
+  },
 
   compass: {
     files: config.sourcedir+'scss/**/*.scss',

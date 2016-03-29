@@ -11,7 +11,7 @@ module.exports = {
   	foundation: {
     	files:[{ 
       		src: config.tempjsdir+'foundation.all.js',
-      		dest: config.sourcedir+'assets/js/foundation.babelized.js'
+      		dest: config.tempjsdir+'foundation.babelized.js'
 
       	}] 
 	}

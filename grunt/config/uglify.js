@@ -8,7 +8,7 @@ module.exports = {
     },                      
     js: {
       files:[{ 
-          src: [config.sourcedir+'assets/js/foundation.babelized.js',config.appjs],
+          src: [config.tempjsdir+'foundation.babelized.js',config.appjs],
           dest: config.destinationdir+'assets/js/all.min.js'   
 
 

@@ -11,7 +11,7 @@ module.exports = {
 		//qualsiasi test tu voglia includere, devi andare in https://modernizr.com/download e NON FIDARTI 
 		// del codice generato! è meglio che tu vada sull'esempio in codepen a copiarti come si chiama il test
 		// alla riga: * http://modernizr.com/download/?-WHATEVER !*/
-		"tests": [
+		"tests": [    
 			],
 		"options": [
 		    "html5shiv",
