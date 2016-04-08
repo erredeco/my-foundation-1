@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/erredeco/my-foundation-1",
   "devDependencies": {
-    "autoprefixer": "^6.3.4",
+    "autoprefixer": "^6.3.6",
     "babel-plugin-transform-es2015-arrow-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoped-functions": "^6.3.13",
     "babel-plugin-transform-es2015-block-scoping": "^6.7.1",
@@ -45,7 +45,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-uglify": "^1.0.1",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-dev-update": "^1.4.0",
+    "grunt-dev-update": "^2.0.0",
     "grunt-modernizr": "^1.0.2",
     "grunt-newer": "^1.1.2",
     "grunt-postcss": "^0.8.0",
