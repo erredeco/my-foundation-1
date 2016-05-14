@@ -2,7 +2,7 @@
 
 "use strict";
 
-var FOUNDATION_VERSION = '6.2.0';
+var FOUNDATION_VERSION = '6.2.1';
 
 // Global Foundation object
 // This is attached to the window, or used as a module for AMD/Browserify
@@ -551,6 +551,18 @@ function GetOffsets(element, anchor, position, vOffset, hOffset, isOverflow) {
         top: $eleDims.windowDims.offset.top
       }
       break;
+    case 'left bottom':
+      return {
+        left: $anchorDims.offset.left - ($eleDims.width + hOffset),
+        top: $anchorDims.offset.top + $anchorDims.height
+      };
+      break;
+    case 'right bottom':
+      return {
+        left: $anchorDims.offset.left + $anchorDims.width + hOffset - $eleDims.width,
+        top: $anchorDims.offset.top + $anchorDims.height
+      };
+      break;
     default:
       return {
         left: (Foundation.rtl() ? $anchorDims.offset.left - $eleDims.width + $anchorDims.width : $anchorDims.offset.left),
@@ -763,7 +775,7 @@ var MediaQuery = {
   _getCurrentSize() {
     var matched;
 
-    for (var i in this.queries) {
+    for (var i = 0; i < this.queries.length; i++) {
       var query = this.queries[i];
 
       if (window.matchMedia(query.value).matches) {
@@ -1830,11 +1842,6 @@ class Abide {
     var isGood = true;
 
     switch ($el[0].type) {
-      case 'checkbox':
-      case 'radio':
-        isGood = $el[0].checked;
-        break;
-
       case 'select':
       case 'select-one':
       case 'select-multiple':
@@ -1889,6 +1896,28 @@ class Abide {
   }
 
   /**
+   * Get the set of labels associated with a set of radio els in this order
+   * 2. The <label> with the attribute `[for="someInputId"]`
+   * 3. The `.closest()` <label>
+   *
+   * @param {Object} $el - jQuery object to check for required attribute
+   * @returns {Boolean} Boolean value depends on whether or not attribute is checked or empty
+   */
+  findRadioLabels($els) {
+    var labels = $els.map((i, el) => {
+      var id = el.id;
+      var $label = this.$element.find(`label[for="${id}"]`);
+
+      if (!$label.length) {
+        $label = $(el).closest('label');
+      }
+      return $label[0];
+    });
+
+    return $(labels);
+  }
+
+  /**
    * Adds the CSS error class as specified by the Abide settings to the label, input, and the form
    * @param {Object} $el - jQuery object to add the class to
    */
@@ -1908,10 +1937,38 @@ class Abide {
   }
 
   /**
+   * Remove CSS error classes etc from an entire radio button group
+   * @param {String} groupName - A string that specifies the name of a radio button group
+   *
+   */
+
+  removeRadioErrorClasses(groupName) {
+    var $els = this.$element.find(`:radio[name="${groupName}"]`);
+    var $labels = this.findRadioLabels($els);
+    var $formErrors = this.findFormError($els);
+
+    if ($labels.length) {
+      $labels.removeClass(this.options.labelErrorClass);
+    }
+
+    if ($formErrors.length) {
+      $formErrors.removeClass(this.options.formErrorClass);
+    }
+
+    $els.removeClass(this.options.inputErrorClass).removeAttr('data-invalid');
+
+  }
+
+  /**
    * Removes CSS error class as specified by the Abide settings from the label, input, and the form
    * @param {Object} $el - jQuery object to remove the class from
    */
   removeErrorClasses($el) {
+    // radios need to clear all of the els
+    if($el[0].type == 'radio') {
+      return this.removeRadioErrorClasses($el.attr('name'));
+    }
+
     var $label = this.findLabel($el);
     var $formError = this.findFormError($el);
 
@@ -1967,6 +2024,7 @@ class Abide {
       equalTo = this.options.validators.equalTo($el);
     }
 
+
     var goodToGo = [clearRequire, validated, customValidator, equalTo].indexOf(false) === -1;
     var message = (goodToGo ? 'valid' : 'invalid') + '.zf.abide';
 
@@ -2019,37 +2077,56 @@ class Abide {
    * @returns {Boolean} Boolean value depends on whether or not the input value matches the pattern specified
    */
   validateText($el, pattern) {
-    // pattern = pattern ? pattern : $el.attr('pattern') ? $el.attr('pattern') : $el.attr('type');
+    // A pattern can be passed to this function, or it will be infered from the input's "pattern" attribute, or it's "type" attribute
     pattern = (pattern || $el.attr('pattern') || $el.attr('type'));
     var inputText = $el.val();
+    var valid = false;
 
-    // if text, check if the pattern exists, if so, test it, if no text or no pattern, return true.
-    return inputText.length ?
-      this.options.patterns.hasOwnProperty(pattern) ? this.options.patterns[pattern].test(inputText) :
-        pattern && pattern !== $el.attr('type') ?
-          new RegExp(pattern).test(inputText) :
-        true :
-      true;
+    if (inputText.length) {
+      // If the pattern attribute on the element is in Abide's list of patterns, then test that regexp
+      if (this.options.patterns.hasOwnProperty(pattern)) {
+        valid = this.options.patterns[pattern].test(inputText);
+      }
+      // If the pattern name isn't also the type attribute of the field, then test it as a regexp
+      else if (pattern !== $el.attr('type')) {
+        valid = new RegExp(pattern).test(inputText);
+      }
+      else {
+        valid = true;
+      }
+    }
+    // An empty field is valid if it's not required
+    else if (!$el.prop('required')) {
+      valid = true;
+    }
+
+    return valid;
    }
 
   /**
-   * Determines whether or a not a radio input is valid based on whether or not it is required and selected
+   * Determines whether or a not a radio input is valid based on whether or not it is required and selected. Although the function targets a single `<input>`, it validates by checking the `required` and `checked` properties of all radio buttons in its group.
    * @param {String} groupName - A string that specifies the name of a radio button group
    * @returns {Boolean} Boolean value depends on whether or not at least one radio input has been selected (if it's required)
    */
   validateRadio(groupName) {
-    var $group = this.$element.find(`:radio[name="${groupName}"]`),
-        counter = [],
-        _this = this;
+    // If at least one radio in the group has the `required` attribute, the group is considered required
+    // Per W3C spec, all radio buttons in a group should have `required`, but we're being nice
+    var $group = this.$element.find(`:radio[name="${groupName}"]`);
+    var valid = false;
 
-    $group.each(function(){
-      var rdio = $(this),
-          clear = _this.requiredCheck(rdio);
-      counter.push(clear);
-      if(clear) _this.removeErrorClasses(rdio);
+    // .attr() returns undefined if no elements in $group have the attribute "required"
+    if ($group.attr('required') === undefined) {
+      valid = true;
+    }
+
+    // For the group to be valid, at least one radio needs to be checked
+    $group.each((i, e) => {
+      if ($(e).prop('checked')) {
+        valid = true;
+      }
     });
 
-    return counter.indexOf(false) === -1;
+    return valid;
   }
 
   /**
@@ -2248,14 +2325,11 @@ class Accordion {
    */
   _init() {
     this.$element.attr('role', 'tablist');
-    this.$tabs = this.$element.children('li');
-    if (this.$tabs.length === 0) {
-      this.$tabs = this.$element.children('[data-accordion-item]');
-    }
-    this.$tabs.each(function(idx, el){
+    this.$tabs = this.$element.children('li, [data-accordion-item]');
 
+    this.$tabs.each(function(idx, el) {
       var $el = $(el),
-          $content = $el.find('[data-tab-content]'),
+          $content = $el.children('[data-tab-content]'),
           id = $content[0].id || Foundation.GetYoDigits(6, 'accordion'),
           linkId = el.id || `${id}-label`;
 
@@ -2266,6 +2340,7 @@ class Accordion {
         'aria-expanded': false,
         'aria-selected': false
       });
+
       $content.attr({'role': 'tabpanel', 'aria-labelledby': linkId, 'aria-hidden': true, 'id': id});
     });
     var $initActive = this.$element.find('.is-active').children('[data-tab-content]');
@@ -2304,10 +2379,16 @@ class Accordion {
               _this.toggle($tabContent);
             },
             next: function() {
-              $elem.next().find('a').focus().trigger('click.zf.accordion');
+              var $a = $elem.next().find('a').focus();
+              if (!_this.options.multiExpand) {
+                $a.trigger('click.zf.accordion')
+              }
             },
             previous: function() {
-              $elem.prev().find('a').focus().trigger('click.zf.accordion');
+              var $a = $elem.prev().find('a').focus();
+              if (!_this.options.multiExpand) {
+                $a.trigger('click.zf.accordion')
+              }
             },
             handled: function() {
               e.preventDefault();
@@ -2342,9 +2423,8 @@ class Accordion {
    * @function
    */
   down($target, firstTime) {
-    var _this = this;
-    if(!this.options.multiExpand && !firstTime){
-      var $currentActive = this.$element.find('.is-active').children('[data-tab-content]');
+    if (!this.options.multiExpand && !firstTime) {
+      var $currentActive = this.$element.children('.is-active').children('[data-tab-content]');
       if($currentActive.length){
         this.up($currentActive);
       }
@@ -2356,19 +2436,14 @@ class Accordion {
       .addBack()
       .parent().addClass('is-active');
 
-    // Foundation.Move(_this.options.slideSpeed, $target, function(){
-      $target.slideDown(_this.options.slideSpeed, function () {
-        /**
-         * Fires when the tab is done opening.
-         * @event Accordion#down
-         */
-        _this.$element.trigger('down.zf.accordion', [$target]);
-      });
-    // });
+    $target.slideDown(this.options.slideSpeed, () => {
+      /**
+       * Fires when the tab is done opening.
+       * @event Accordion#down
+       */
+      this.$element.trigger('down.zf.accordion', [$target]);
+    });
 
-    // if(!firstTime){
-    //   Foundation._reflow(this.$element.attr('data-accordion'));
-    // }
     $(`#${$target.attr('aria-labelledby')}`).attr({
       'aria-expanded': true,
       'aria-selected': true
@@ -2559,19 +2634,19 @@ class AccordionMenu {
 
       $elements.each(function(i) {
         if ($(this).is($element)) {
-          $prevElement = $elements.eq(Math.max(0, i-1));
-          $nextElement = $elements.eq(Math.min(i+1, $elements.length-1));
+          $prevElement = $elements.eq(Math.max(0, i-1)).find('a').first();
+          $nextElement = $elements.eq(Math.min(i+1, $elements.length-1)).find('a').first();
 
           if ($(this).children('[data-submenu]:visible').length) { // has open sub menu
-            $nextElement = $element.find('li:first-child');
+            $nextElement = $element.find('li:first-child').find('a').first();
           }
           if ($(this).is(':first-child')) { // is first element of sub menu
-            $prevElement = $element.parents('li').first();
+            $prevElement = $element.parents('li').first().find('a').first();
           } else if ($prevElement.children('[data-submenu]:visible').length) { // if previous element has open sub menu
-            $prevElement = $prevElement.find('li:last-child');
+            $prevElement = $prevElement.find('li:last-child').find('a').first();
           }
           if ($(this).is(':last-child')) { // is last element of sub menu
-            $nextElement = $element.parents('li').first().next('li');
+            $nextElement = $element.parents('li').first().next('li').find('a').first();
           }
 
           return;
@@ -2581,7 +2656,7 @@ class AccordionMenu {
         open: function() {
           if ($target.is(':hidden')) {
             _this.down($target);
-            $target.find('li').first().focus();
+            $target.find('li').first().find('a').first().focus();
           }
         },
         close: function() {
@@ -2589,14 +2664,16 @@ class AccordionMenu {
             _this.up($target);
           } else if ($element.parent('[data-submenu]').length) { // close currently open sub
             _this.up($element.parent('[data-submenu]'));
-            $element.parents('li').first().focus();
+            $element.parents('li').first().find('a').first().focus();
           }
         },
         up: function() {
-          $prevElement.focus();
+          $prevElement.attr('tabindex', -1).focus();
+          e.preventDefault();
         },
         down: function() {
-          $nextElement.focus();
+          $nextElement.attr('tabindex', -1).focus();
+          e.preventDefault();
         },
         toggle: function() {
           if ($element.children('[data-submenu]').length) {
@@ -2607,7 +2684,6 @@ class AccordionMenu {
           _this.hideAll();
         },
         handled: function() {
-          e.preventDefault();
           e.stopImmediatePropagation();
         }
       });
@@ -2765,9 +2841,9 @@ class Drilldown {
    * @private
    */
   _init() {
-    this.$submenuAnchors = this.$element.find('li.is-drilldown-submenu-parent');
-    this.$submenus = this.$submenuAnchors.children('[data-submenu]');
-    this.$menuItems = this.$element.find('li').not('.js-drilldown-back').attr('role', 'menuitem');
+    this.$submenuAnchors = this.$element.find('li.is-drilldown-submenu-parent').children('a');
+    this.$submenus = this.$submenuAnchors.parent('li').children('[data-submenu]');
+    this.$menuItems = this.$element.find('li').not('.js-drilldown-back').attr('role', 'menuitem').find('a');
 
     this._prepareMenu();
 
@@ -2834,7 +2910,7 @@ class Drilldown {
       // if(e.target !== e.currentTarget.firstElementChild){
       //   return false;
       // }
-      _this._show($elem);
+      _this._show($elem.parent('li'));
 
       if(_this.options.closeOnClick){
         var $body = $('body').not(_this.$wrapper);
@@ -2853,9 +2929,11 @@ class Drilldown {
    */
   _keyboardEvents() {
     var _this = this;
-    this.$menuItems.add(this.$element.find('.js-drilldown-back')).on('keydown.zf.drilldown', function(e){
+    
+    this.$menuItems.add(this.$element.find('.js-drilldown-back > a')).on('keydown.zf.drilldown', function(e){
+      
       var $element = $(this),
-          $elements = $element.parent('ul').children('li'),
+          $elements = $element.parent('li').parent('ul').children('li').children('a'),
           $prevElement,
           $nextElement;
 
@@ -2866,28 +2944,33 @@ class Drilldown {
           return;
         }
       });
+
       Foundation.Keyboard.handleKey(e, 'Drilldown', {
         next: function() {
           if ($element.is(_this.$submenuAnchors)) {
-            _this._show($element);
-            $element.on(Foundation.transitionend($element), function(){
-              $element.find('ul li').filter(_this.$menuItems).first().focus();
+            _this._show($element.parent('li'));
+            $element.parent('li').one(Foundation.transitionend($element), function(){
+              $element.parent('li').find('ul li a').filter(_this.$menuItems).first().focus();
             });
+            e.preventDefault();
           }
         },
         previous: function() {
-          _this._hide($element.parent('ul'));
-          $element.parent('ul').on(Foundation.transitionend($element), function(){
+          _this._hide($element.parent('li').parent('ul'));
+          $element.parent('li').parent('ul').one(Foundation.transitionend($element), function(){
             setTimeout(function() {
-              $element.parent('ul').parent('li').focus();
+              $element.parent('li').parent('ul').parent('li').children('a').first().focus();
             }, 1);
           });
+          e.preventDefault();
         },
         up: function() {
           $prevElement.focus();
+          e.preventDefault();
         },
         down: function() {
           $nextElement.focus();
+          e.preventDefault();
         },
         close: function() {
           _this._back();
@@ -2895,15 +2978,22 @@ class Drilldown {
         },
         open: function() {
           if (!$element.is(_this.$menuItems)) { // not menu item means back button
-            _this._hide($element.parent('ul'));
-            setTimeout(function(){$element.parent('ul').parent('li').focus();}, 1);
+            _this._hide($element.parent('li').parent('ul'));
+            $element.parent('li').parent('ul').one(Foundation.transitionend($element), function(){
+              setTimeout(function() {
+                $element.parent('li').parent('ul').parent('li').children('a').first().focus();
+              }, 1);
+            });            
+            e.preventDefault();
           } else if ($element.is(_this.$submenuAnchors)) {
-            _this._show($element);
-            setTimeout(function(){$element.find('ul li').filter(_this.$menuItems).first().focus();}, 1);
+            _this._show($element.parent('li'));
+            $element.parent('li').one(Foundation.transitionend($element), function(){
+              $element.parent('li').find('ul li a').filter(_this.$menuItems).first().focus();
+            });            
+            e.preventDefault();
           }
         },
         handled: function() {
-          e.preventDefault();
           e.stopImmediatePropagation();
         }
       });
@@ -2965,7 +3055,7 @@ class Drilldown {
    * Opens a submenu.
    * @function
    * @fires Drilldown#open
-   * @param {jQuery} $elem - the current element with a submenu to open.
+   * @param {jQuery} $elem - the current element with a submenu to open, i.e. the `li` tag.
    */
   _show($elem) {
     $elem.children('[data-submenu]').addClass('is-active');
@@ -2977,7 +3067,7 @@ class Drilldown {
    * Hides a submenu
    * @function
    * @fires Drilldown#hide
-   * @param {jQuery} $elem - the current sub-menu to hide.
+   * @param {jQuery} $elem - the current sub-menu to hide, i.e. the `ul` tag.
    */
   _hide($elem) {
     var _this = this;
@@ -3040,7 +3130,7 @@ Drilldown.defaults = {
    * @option
    * @example '<\li><\a>Back<\/a><\/li>'
    */
-  backButton: '<li class="js-drilldown-back"><a>Back</a></li>',
+  backButton: '<li class="js-drilldown-back"><a tabindex="0">Back</a></li>',
   /**
    * Markup used to wrap drilldown menu. Use a class name for independent styling; the JS applied class: `is-drilldown` is required. Remove the backslash (`\`) if copy and pasting.
    * @option
@@ -3066,7 +3156,6 @@ Drilldown.defaults = {
 Foundation.plugin(Drilldown, 'Drilldown');
 
 }(jQuery);
-
 'use strict';
 
 !function($) {
@@ -3138,8 +3227,11 @@ class Dropdown {
    * @returns {String} position - string value of a position class.
    */
   getPositionClass() {
-    var position = this.$element[0].className.match(/\b(top|left|right)\b/g);
-        position = position ? position[0] : '';
+    var verticalPosition = this.$element[0].className.match(/(top|left|right|bottom)/g);
+        verticalPosition = verticalPosition ? verticalPosition[0] : '';
+    var horizontalPosition = /float-(.+)\s/.exec(this.$anchor[0].className);
+        horizontalPosition = horizontalPosition ? horizontalPosition[1] : '';
+    var position = horizontalPosition ? horizontalPosition + ' ' + verticalPosition : verticalPosition;
     return position;
   }
 
@@ -3199,6 +3291,8 @@ class Dropdown {
         param = (direction === 'top') ? 'height' : 'width',
         offset = (param === 'height') ? this.options.vOffset : this.options.hOffset;
 
+
+
     if(($eleDims.width >= $eleDims.windowDims.width) || (!this.counter && !Foundation.Box.ImNotTouchingYou(this.$element))){
       this.$element.offset(Foundation.Box.GetOffsets(this.$element, this.$anchor, 'center bottom', this.options.vOffset, this.options.hOffset, true)).css({
         'width': $eleDims.windowDims.width - (this.options.hOffset * 2),
@@ -3210,7 +3304,7 @@ class Dropdown {
 
     this.$element.offset(Foundation.Box.GetOffsets(this.$element, this.$anchor, position, this.options.vOffset, this.options.hOffset));
 
-    while(!Foundation.Box.ImNotTouchingYou(this.$element) && this.counter){
+    while(!Foundation.Box.ImNotTouchingYou(this.$element, false, true) && this.counter){
       this._reposition(position);
       this._setPosition();
     }
@@ -3524,7 +3618,7 @@ class DropdownMenu {
     this.$tabs = this.$element.children('[role="menuitem"]');
     this.$tabs.find('ul.is-dropdown-submenu').addClass(this.options.verticalClass);
 
-    if (this.$element.hasClass(this.options.rightClass) || this.options.alignment === 'right' || Foundation.rtl()) {
+    if (this.$element.hasClass(this.options.rightClass) || this.options.alignment === 'right' || Foundation.rtl() || this.$element.parents('.top-bar-right').is('*')) {
       this.options.alignment = 'right';
       subs.addClass('opens-left');
     } else {
@@ -4026,7 +4120,7 @@ class Equalizer {
    * @returns {Array} groups - An array of heights of children within Equalizer container grouped by row with element,height and max as last child
    */
   getHeightsByRow(cb) {
-    var lastElTopOffset = this.$watched.first().offset().top,
+    var lastElTopOffset = (this.$watched.length ? this.$watched.first().offset().top : 0),
         groups = [],
         group = 0;
     //group by Row
@@ -4296,7 +4390,7 @@ class Interchange {
       .trigger(trigger);
     }
     // Replacing background images
-    else if (path.match(/\.(gif|jpg|jpeg|tiff|png)([?#].*)?/i)) {
+    else if (path.match(/\.(gif|jpg|jpeg|png|svg|tiff)([?#].*)?/i)) {
       this.$element.css({ 'background-image': 'url('+path+')' })
           .trigger(trigger);
     }
@@ -5170,7 +5264,8 @@ class Orbit {
         var $controls = this.$element.find(`.${this.options.nextClass}, .${this.options.prevClass}`);
         $controls.attr('tabindex', 0)
         //also need to handle enter/return and spacebar key presses
-        .on('click.zf.orbit touchend.zf.orbit', function(){
+        .on('click.zf.orbit touchend.zf.orbit', function(e){
+	  e.preventDefault();
           _this.changeSlide($(this).hasClass(_this.options.nextClass));
         });
       }
@@ -5454,25 +5549,28 @@ class ResponsiveMenu {
    * @private
    */
   _init() {
-    var rulesTree = {};
+    // The first time an Interchange plugin is initialized, this.rules is converted from a string of "classes" to an object of rules
+    if (typeof this.rules === 'string') {
+      let rulesTree = {};
 
-    // Parse rules from "classes" in data attribute
-    var rules = this.rules.split(' ');
+      // Parse rules from "classes" pulled from data attribute
+      let rules = this.rules.split(' ');
 
-    // Iterate through every rule found
-    for (var i = 0; i < rules.length; i++) {
-      var rule = rules[i].split('-');
-      var ruleSize = rule.length > 1 ? rule[0] : 'small';
-      var rulePlugin = rule.length > 1 ? rule[1] : rule[0];
+      // Iterate through every rule found
+      for (let i = 0; i < rules.length; i++) {
+        let rule = rules[i].split('-');
+        let ruleSize = rule.length > 1 ? rule[0] : 'small';
+        let rulePlugin = rule.length > 1 ? rule[1] : rule[0];
 
-      if (MenuPlugins[rulePlugin] !== null) {
-        rulesTree[ruleSize] = MenuPlugins[rulePlugin];
+        if (MenuPlugins[rulePlugin] !== null) {
+          rulesTree[ruleSize] = MenuPlugins[rulePlugin];
+        }
       }
+
+      this.rules = rulesTree;
     }
 
-    this.rules = rulesTree;
-
-    if (!$.isEmptyObject(rulesTree)) {
+    if (!$.isEmptyObject(this.rules)) {
       this._checkMediaQueries();
     }
   }
@@ -5784,17 +5882,27 @@ class Reveal {
     var outerWidth = $(window).width();
     var height = this.$element.outerHeight();
     var outerHeight = $(window).height();
-    var left = parseInt((outerWidth - width) / 2, 10);
-    var top;
-    if (height > outerHeight) {
-      top = parseInt(Math.min(100, outerHeight / 10), 10);
+    var left, top;
+    if (this.options.hOffset === 'auto') {
+      left = parseInt((outerWidth - width) / 2, 10);
     } else {
-      top = parseInt((outerHeight - height) / 4, 10);
+      left = parseInt(this.options.hOffset, 10);
+    }
+    if (this.options.vOffset === 'auto') {
+      if (height > outerHeight) {
+        top = parseInt(Math.min(100, outerHeight / 10), 10);
+      } else {
+        top = parseInt((outerHeight - height) / 4, 10);
+      }
+    } else {
+      top = parseInt(this.options.vOffset, 10);
     }
     this.$element.css({top: top + 'px'});
-    // only worry about left if we don't have an overlay, otherwise we're perfectly in the middle
-    if(!this.$overlay) {
+    // only worry about left if we don't have an overlay or we havea  horizontal offset,
+    // otherwise we're perfectly in the middle
+    if(!this.$overlay || (this.options.hOffset !== 'auto')) {
       this.$element.css({left: left + 'px'});
+      this.$element.css({margin: '0px'});
     }
 
   }
@@ -5899,7 +6007,7 @@ class Reveal {
       if (this.options.overlay) {
         Foundation.Motion.animateIn(this.$overlay, 'fade-in');
       }
-      Foundation.Motion.animateIn(this.$element, this.options.animationIn, function() {
+      Foundation.Motion.animateIn(this.$element, this.options.animationIn, () => {
         this.focusableElements = Foundation.Keyboard.findFocusable(this.$element);
       });
     }
@@ -5967,9 +6075,6 @@ class Reveal {
             }
           }
         });
-        if (_this.focusableElements.length === 0) { // no focusable elements inside the modal at all, prevent tabbing in general
-          e.preventDefault();
-        }
       });
     }
 
@@ -5983,10 +6088,16 @@ class Reveal {
             _this.focusableElements.eq(0).focus();
             e.preventDefault();
           }
+          if (_this.focusableElements.length === 0) { // no focusable elements inside the modal at all, prevent tabbing in general
+            e.preventDefault();
+          }
         },
         tab_backward: function() {
           if (_this.$element.find(':focus').is(_this.focusableElements.eq(0)) || _this.$element.is(':focus')) { // left modal upwards, setting focus to last element
             _this.focusableElements.eq(-1).focus();
+            e.preventDefault();
+          }
+          if (_this.focusableElements.length === 0) { // no focusable elements inside the modal at all, prevent tabbing in general
             e.preventDefault();
           }
         },
@@ -6112,6 +6223,7 @@ class Reveal {
    */
   destroy() {
     if (this.options.overlay) {
+      this.$element.appendTo($('body')); // move $element outside of $overlay to prevent error unregisterPlugin()
       this.$overlay.hide().off().remove();
     }
     this.$element.hide().off();
@@ -6168,15 +6280,15 @@ Reveal.defaults = {
   /**
    * Distance, in pixels, the modal should push down from the top of the screen.
    * @option
-   * @example 100
+   * @example auto
    */
-  vOffset: 100,
+  vOffset: 'auto',
   /**
    * Distance, in pixels, the modal should push in from the side of the screen.
    * @option
-   * @example 0
+   * @example auto
    */
-  hOffset: 0,
+  hOffset: 'auto',
   /**
    * Allows the modal to be fullscreen, completely blocking out the rest of the view. JS checks for this as well.
    * @option
@@ -6323,6 +6435,7 @@ class Slider {
    * @param {Number} location - floating point between the start and end values of the slider bar.
    * @param {Function} cb - callback function to fire on completion.
    * @fires Slider#moved
+   * @fires Slider#changed
    */
   _setHandlePos($hndl, location, noInvert, cb) {
   //might need to alter that slightly for bars that will have odd number selections.
@@ -6357,7 +6470,7 @@ class Slider {
         handleDim = $hndl[0].getBoundingClientRect()[hOrW],
         elemDim = this.$element[0].getBoundingClientRect()[hOrW],
         //percentage of bar min/max value based on click or drag point
-        pctOfBar = percent(location, this.options.end).toFixed(2),
+        pctOfBar = percent(location - this.options.start, this.options.end - this.options.start).toFixed(2),
         //number of actual pixels to shift the handle, based on the percentage obtained above
         pxToMove = (elemDim - handleDim) * pctOfBar,
         //percentage of bar to shift the handle
@@ -6419,6 +6532,15 @@ class Slider {
         _this.$fill.css(css);
       }
     });
+
+    /**
+     * Fires when the value has not been change for a given time.
+     * @event Slider#changed
+     */    
+    clearTimeout(_this.timeout);
+    _this.timeout = setTimeout(function(){
+      _this.$element.trigger('changed.zf.slider', [$hndl]);
+    }, _this.options.changedDelay);
   }
 
   /**
@@ -6485,7 +6607,7 @@ class Slider {
           //if the cursor position is less than or greater than the elements bounding coordinates, set coordinates within those bounds
           barXY = barOffset > 0 ? -halfOfHandle : (barOffset - halfOfHandle) < -barDim ? barDim : Math.abs(barOffset),
           offsetPct = percent(barXY, barDim);
-      value = (this.options.end - this.options.start) * offsetPct;
+      value = (this.options.end - this.options.start) * offsetPct + this.options.start;
 
       // turn everything around for RTL, yay math!
       if (Foundation.rtl() && !this.options.vertical) {value = this.options.end - value;}
@@ -6740,7 +6862,13 @@ Slider.defaults = {
    * @option
    * @example false
    */
-  invertVertical: false
+  invertVertical: false,
+  /**
+   * Milliseconds before the `changed.zf-slider` event is triggered after value change. 
+   * @option
+   * @example 500
+   */
+  changedDelay: 500
 };
 
 function percent(frac, num) {
@@ -7659,14 +7787,14 @@ class Toggler {
 
     if (this.$element.is(':hidden')) {
       Foundation.Motion.animateIn(this.$element, this.animationIn, function() {
-        this.trigger('on.zf.toggler');
         _this._updateARIA(true);
+        this.trigger('on.zf.toggler');
       });
     }
     else {
       Foundation.Motion.animateOut(this.$element, this.animationOut, function() {
-        this.trigger('off.zf.toggler');
         _this._updateARIA(false);
+        this.trigger('off.zf.toggler');
       });
     }
   }
