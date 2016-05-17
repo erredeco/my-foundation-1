@@ -2,7 +2,8 @@
 module.exports = {
 	dist: {
 		options: {
-			config: './config.rb',
+			sourcemap: true,
+      config: './config.rb',
 			
 		}
 	}
