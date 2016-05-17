@@ -20,7 +20,20 @@ module.exports = {
   templatesdir:'./templates/',
   
   // this is the only thing that should change!
-  deploydir:'../../typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/'
+  // on Windows, you should put all the "Istances" of my-foundation-1  inside 
+  // C:\Users\riccardo.decontardi\Documents\Progetti\
+  // e.g. "C:\Users\riccardo.decontardi\Documents\Progetti\Public_assets_for_typo3.test7.it"
+  // e.g. "C:\Users\riccardo.decontardi\Documents\Progetti\Public_assets_for_www.teci.it.upgrade.bhuman.it"  
+  // as the XAMPP is in "C:\xampp\htdocs\typo3.test7.it", the path deploydir must be:
+  // deploydir:'../../../../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/',
+  //
+  // on MAC:  the "istances" of my-foundation-1 are: 
+  // Users/riccardo/Progetti/
+  // e.g. Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it
+  // as the MAMP is in  Users/riccardo/Sites/typo3.7.development.it/ the path deploydir must be:
+  // deploydir:'../../typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/',
+  
+  deploydir:'',
   
   
 	

@@ -58,7 +58,7 @@ module.exports = {
       expand:true, 
       cwd: config.destinationdir+'Assets/',
       src: ['./**/*.*'],     
-      dest: config.deploydir
+      dest: config.deploydir+'Assets/'
     }]  
   }
 };
