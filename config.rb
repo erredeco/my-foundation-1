@@ -2,11 +2,11 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "dist/assets/css"
+css_dir = "dist/Assets/Css"
 sass_dir = "source/scss"
-images_dir = "dist/assets/img_layout"
-fonts_dir = "dist/assets/fonts"
-javascripts_dir = "dist/assets/js"
+images_dir = "dist/Assets/Img_layout"
+fonts_dir = "dist/Assets/Fonts"
+javascripts_dir = "dist/Assets/Js"
 add_import_path  "node_modules/foundation-sites/scss"
 add_import_path "node_modules/motion-ui/src"
 

@@ -6,9 +6,9 @@ module.exports = {
   dist: {
     files: [{
       expand: true,
-      cwd: config.destinationdir+'assets/css',
+      cwd: config.destinationdir+'Assets/Css',
       src: ['*.css', '!*.min.css'],
-      dest: config.destinationdir+'assets/css',
+      dest: config.destinationdir+'Assets/Css',
       ext: '.min.css'
     }]
   }

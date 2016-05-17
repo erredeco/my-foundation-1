@@ -9,7 +9,7 @@ module.exports = {
     js: {
       files:[{ 
           src: [config.tempjsdir+'foundation.babelized.js',config.appjs],
-          dest: config.destinationdir+'assets/js/all.min.js'   
+          dest: config.destinationdir+'Assets/Js/all.min.js'   
 
 
       /*  better separate the foundation files from the others?  

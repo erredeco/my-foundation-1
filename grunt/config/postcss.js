@@ -10,6 +10,6 @@ options: {
       ]
     },
     dist: {
-      src: config.destinationdir+'assets/css/*.css'
+      src: config.destinationdir+'Assets/Css/*.css'
     }
 };

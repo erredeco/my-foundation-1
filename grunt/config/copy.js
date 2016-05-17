@@ -6,13 +6,13 @@ module.exports = {
   dist: {
     files: [{
       src: config.bowerdir+'jquery/dist/jquery.min.js',
-      dest: config.destinationdir+'assets/js/vendor/jquery.min.js'
+      dest: config.destinationdir+'Assets/Js/Vendor/jquery.min.js'
     },
     {         
       expand:true,
       cwd: config.sourcedir+'assets/',
       src: ['**/*', '!{scss,js}/**/*'],
-      dest: config.destinationdir+'assets/',  
+      dest: config.destinationdir+'Assets/',  
       filter: 'isFile'
     }]
   },
@@ -51,7 +51,16 @@ module.exports = {
       src: ['./**/*.*'], 
       dest: config.bckdir+'<%= date%>-version<%= pkg.version%>/source/'
     }]
-  }  
+  },
+  
+  deploy: {
+    files: [{
+      expand:true, 
+      cwd: config.destinationdir+'Assets/',
+      src: ['./**/*.*'],     
+      dest: config.deploydir
+    }]  
+  }
 };
 
 

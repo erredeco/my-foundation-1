@@ -4,7 +4,7 @@ var config = require('../config');
 
 module.exports = {
 	dist: {
-		"dest" : config.destinationdir+'assets/js/vendor/modernizr-custom.min.js',
+		"dest" : config.destinationdir+'Assets/Js/Vendor/modernizr-custom.min.js',
 		"parseFiles": false,
 		"customTests": [],
 		"devFile": false,

@@ -18,6 +18,11 @@ module.exports = {
 	sourcedir: './source/',
   tempjsdir:'./source/assets/js/temp/',
   templatesdir:'./templates/',
+  
+  // this is the only thing that should change!
+  deploydir:'../../typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/'
+  
+  
 	
 	//Compoents: my js (App js)
 	appjs:[
