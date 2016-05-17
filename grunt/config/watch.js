@@ -31,8 +31,8 @@ module.exports = {
 
   },
 
-  assemble_all: {
-    files: [config.sourcedir+'{includes,pages,layouts}/**/*.html',config.datadir+'*.json'],
+  assemble: {
+    files: [config.templatesdir+'{includes,pages,layouts}/**/*.html',config.datadir+'*.json'],
     tasks: ['assemble','newer:assemble'],
     options: {
       livereload: true
