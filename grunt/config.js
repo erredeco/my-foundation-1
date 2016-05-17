@@ -31,9 +31,9 @@ module.exports = {
   // Users/riccardo/Progetti/
   // e.g. Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it
   // as the MAMP is in  Users/riccardo/Sites/typo3.7.development.it/ the path deploydir must be:
-  // deploydir:'../../typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/',
+  // deploydir:'../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/',
   
-  deploydir:'',
+  deploydir:'../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/',
   
   
 	
