@@ -21,11 +21,11 @@ module.exports = {
   
   // this is the only thing that should change!
   // on Windows, you should put all the "Istances" of my-foundation-1  inside 
-  // C:\Users\riccardo.decontardi\Documents\Progetti\
-  // e.g. "C:\Users\riccardo.decontardi\Documents\Progetti\Public_assets_for_typo3.test7.it"
-  // e.g. "C:\Users\riccardo.decontardi\Documents\Progetti\Public_assets_for_www.teci.it.upgrade.bhuman.it"  
+  // C:\Progetti\
+  // e.g. "C:\Progetti\Public_assets_for_typo3.test7.it"
+  // e.g. "C:\Progetti\Public_assets_for_www.teci.it.upgrade.bhuman.it"  
   // as the XAMPP is in "C:\xampp\htdocs\typo3.test7.it", the path deploydir must be:
-  // deploydir:'../../../../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/',
+  // deploydir:'../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/',
   //
   // on MAC:  the "istances" of my-foundation-1 are: 
   // Users/riccardo/Progetti/
@@ -37,7 +37,7 @@ module.exports = {
   
   
 	
-	//Compoents: my js (App js)
+	//Components: my js (App js)
 	appjs:[
 		'./source/assets/js/app.js'
 	],
