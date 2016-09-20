@@ -4,6 +4,7 @@
 *.sublime-project
 *.log
 prova.*
+deploy.json
 
 dist
 bck

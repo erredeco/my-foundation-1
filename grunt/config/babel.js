@@ -1,7 +1,5 @@
 //https://github.com/babel/grunt-babel
 
-var config = require('../config');
-
 module.exports = {
     options: {
         sourceMap: false,
@@ -10,8 +8,8 @@ module.exports = {
     },                      
   	foundation: {
     	files:[{ 
-      		src: config.tempjsdir+'foundation.all.js',
-      		dest: config.tempjsdir+'foundation.babelized.js'
+      		src: '<%= paths.tempjsdir %>foundation.all.js',
+      		dest: '<%= paths.tempjsdir %>foundation.babelized.js'
 
       	}] 
 	}

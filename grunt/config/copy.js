@@ -1,18 +1,16 @@
 // https://github.com/gruntjs/grunt-contrib-copy
 
-var config = require('../config');
-
 module.exports = {
   dist: {
     files: [{
-      src: config.bowerdir+'jquery/dist/jquery.min.js',
-      dest: config.destinationdir+'Assets/Js/Vendor/jquery.min.js'
+      src: '<%= paths.vendor %>jquery/dist/jquery.min.js',
+      dest:'<%= paths.destinationdir %>Assets/Js/Vendor/jquery.min.js'
     },
     {         
       expand:true,
-      cwd: config.sourcedir+'assets/',
+      cwd: '<%= paths.sourcedir %>assets/',
       src: ['**/*', '!{scss,js}/**/*'],
-      dest: config.destinationdir+'Assets/',  
+      dest:'<%= paths.destinationdir %>Assets/',  
       filter: 'isFile'
     }]
   },
@@ -20,14 +18,14 @@ module.exports = {
   local: {
     files: [{
       expand:true, 
-      cwd: config.foundationdir, 
+      cwd: '<%= paths.foundationdir %>', 
       src: ['scss/settings/_settings.scss'], 
-      dest: config.sourcedir
+      dest: '<%= paths.sourcedir %>'
       },{
       expand:true, 
-      cwd: config.mydir, 
+      cwd: '<%= paths.mydir %>', 
       src: ['**/*.*'], 
-      dest: config.sourcedir
+      dest: '<%= paths.sourcedir %>'
       }]
   },
 
@@ -35,9 +33,9 @@ module.exports = {
     files: [{
       // copy the configuration file from foundation dir to sourcedir
       expand:true, 
-      cwd: config.foundationdir, 
+      cwd: '<%= paths.foundationdir %>', 
       src: ['scss/settings/_settings.scss'], 
-      dest:config.sourcedir     
+      dest:'<%= paths.sourcedir %>'     
     }]
 
   },
@@ -47,18 +45,18 @@ module.exports = {
   backup: { 
     files: [{
       expand:true, 
-      cwd: config.sourcedir, 
+      cwd: '<%= paths.sourcedir %>', 
       src: ['./**/*.*'], 
-      dest: config.bckdir+'<%= date%>-version<%= pkg.version%>/source/'
+      dest:'<%= paths.bckdir %><%= date%>-version<%= pkg.version%>/source/'
     }]
   },
   
   deploy: {
     files: [{
       expand:true, 
-      cwd: config.destinationdir+'Assets/',
+      cwd: '<%= paths.destinationdir %>Assets/',
       src: ['./**/*.*'],     
-      dest: config.deploydir+'Assets/'
+      dest:'<%= paths.deploydir %>Assets/'
     }]  
   }
 };

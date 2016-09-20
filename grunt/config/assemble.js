@@ -1,24 +1,29 @@
 // https://github.com/assemble/assemble/
 
-var config = require('../config');
-
 module.exports = {
   dist: {
     options: {
-      flatten: false,
-      assets: config.destinationdir+'/assets',
-      //non so a cosa serve
-      //data: ['<%= paths.templates %>data/*.json'],
+      site: {
+        base: '<%= paths.destinationdir %>pages'
+      }, 
+      assets: '<%= paths.destinationdir %>/assets',
       
-      //non so a cosa serve
-      //helpers: ['<%= paths.templates %>helpers/*.js'],
-      partials: [config.templatesdir+'includes/**/*.{html,hbs}'],
-      layoutdir: config.templatesdir+'layouts',
-      layout: 'index.html'
+      //if you want to retrieve data from files
+      //data: ['<%= paths.datadir %>*.{json,yml}', 'package.json'],
+      
+      flatten: false,
+      
+      //non so se serve
+      helpers: ['handlebars-helpers','handlebars-helper-rel','<%= paths.sourcedir %>assets/helpers/*.js'],
+      
+      layout: 'index.html',      
+      layoutdir: '<%= paths.templatesdir %>layouts',
+      partials: ['<%= paths.templatesdir %>includes/**/*.{html,hbs}']
+
     },
     expand: true,
-    cwd: config.templatesdir+'pages',
-    src: '**/*.{html,md}',
-    dest: config.destinationdir+'pages/'
+    cwd:  '<%= paths.templatesdir %>pages',
+    src:  '**/*.{html,md}',
+    dest: '<%= paths.destinationdir %>pages/'
   }
 };

@@ -1,6 +1,5 @@
 // https://github.com/gruntjs/grunt-contrib-uglify
 
-var config = require('../config');
 module.exports = {
     options: {
         preserveComments: false,
@@ -8,15 +7,15 @@ module.exports = {
     },                      
     js: {
       files:[{ 
-          src: [config.tempjsdir+'foundation.babelized.js',config.appjs],
-          dest: config.destinationdir+'Assets/Js/all.min.js'   
+          src: ['<%= paths.tempjsdir %>foundation.babelized.js','<%= files.appjs %>'],
+          dest: '<%= paths.destinationdir %>Assets/Js/all.min.js'   
 
 
       /*  better separate the foundation files from the others?  
-          src: config.sourcedir+'assets/js/foundation.babelized.js', dest: config.destinationdir+'assets/js/vendor/foundation.min.js'
+          src: '<%= paths.tempjsdir %>assets/js/foundation.babelized.js', dest: '<%= paths.destinationdir %>assets/js/vendor/foundation.min.js'
 
         },{
-          src: [config.appjs], dest: config.destinationdir+'assets/js/app.min.js'  
+          src: ['<%= files.appjs %>'], dest: '<%= paths.destinationdir %>assets/js/app.min.js'  
         */
         }] 
   }

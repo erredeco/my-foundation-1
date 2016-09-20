@@ -1,5 +1,4 @@
 // https://github.com/nDmitry/grunt-postcss
-var config = require('../config');
 
 module.exports = {
 options: {
@@ -10,6 +9,6 @@ options: {
       ]
     },
     dist: {
-      src: config.destinationdir+'Assets/Css/*.css'
+      src: '<%= paths.destinationdir %>Assets/Css/*.css'
     }
 };

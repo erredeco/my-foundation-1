@@ -1,5 +1,4 @@
 // https://github.com/gruntjs/grunt-contrib-watch
-var config = require('../config');
 
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
     tasks: 'build'
   },
   js: {
-    files: [config.sourcedir+'assets/js/**/*.js', './grunt/config.js'],
+    files: ['<%= paths.sourcedir %>assets/js/**/*.js', './grunt/config.js'],
     tasks: ['concat','newer:concat','babel','uglify','newer:uglify']       
   },
   
@@ -21,18 +20,18 @@ module.exports = {
   },
 
   compass: {
-    files: config.sourcedir+'scss/**/*.scss',
+    files: '<%= paths.sourcedir %>scss/**/*.scss',
     tasks: ['compass:dist','newer:compass:dist']
 
   },
   postcss: {
-    files: config.destinationdir+'assets/css/*.css',
+    files: '<%= paths.destinationdir %>assets/css/*.css',
     tasks: ['postcss:dist','newer:postcss:dist']
 
   },
 
   assemble: {
-    files: [config.templatesdir+'{includes,pages,layouts}/**/*.html',config.datadir+'*.json'],
+    files: ['<%= paths.templatesdir %>{includes,pages,layouts}/**/*.html','<%= paths.datadir %>*.json'],
     tasks: ['assemble','newer:assemble'],
     options: {
       livereload: true
@@ -41,7 +40,7 @@ module.exports = {
 
   assets: {
     options: {
-      cwd: config.sourcedir+'assets/',
+      cwd: '<%= paths.sourcedir %>assets/',
       livereload: true
     },
     files: ['**/*', '!{scss,js}/**/*'],
