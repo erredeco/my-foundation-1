@@ -13,7 +13,6 @@ module.exports = function(grunt) {
       //Local paths
       bckdir: './BCK/',
 
-      //bowerdir: './bower_components/',
       datadir: './data',
 
       // see README!!!!
@@ -36,7 +35,8 @@ module.exports = function(grunt) {
         return project.paths.config + '*.js';
       },
       grunt: 'Gruntfile.js',
-
+      
+      //Define all files in files.json
       foundationjs: grunt.file.readJSON('files.json').foundationjs,
       appjs:  grunt.file.readJSON('files.json').appjs
     },
