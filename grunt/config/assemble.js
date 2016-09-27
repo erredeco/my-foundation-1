@@ -6,7 +6,7 @@ module.exports = {
       site: {
         base: '<%= paths.destinationdir %>pages'
       }, 
-      assets: '<%= paths.destinationdir %>/assets',
+      assets: '<%= paths.destinationdir %>/Assets',
       
       //if you want to retrieve data from files
       //data: ['<%= paths.datadir %>*.{json,yml}', 'package.json'],

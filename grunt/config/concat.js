@@ -7,7 +7,7 @@ module.exports = {
   	foundation: {
     	files:[{
       		src: ['<%= files.foundationjs %>'], 
-      		dest: '<%= paths.foundationdir %>foundation.all.js'
+      		dest: '<%= paths.tempjsdir %>foundation.all.js'
       	}]
 	}
 };

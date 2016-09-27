@@ -50,7 +50,7 @@
     "grunt-newer": "^1.2.0",
     "grunt-postcss": "^0.8.0",
     "grunt-prettify": "^0.4.0",
-    "grunt-string-replace": "^1.3.0",
+    "grunt-string-replace": "^1.3.1",
     "handlebars-helper-rel": "^0.2.0",    
     "load-grunt-config": "^0.19.2",
     "jit-grunt": "^0.10.0",
