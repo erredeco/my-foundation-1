@@ -1,12 +1,6 @@
 # Grunt aliases
 ---
 
-#Initialise repositories
-initialize:
-  - 'devUpdate:main'
-  - 'bower:install'
-  - 'copy:local'
-
 #updates all grunt dependencies (including foundation)
 update:
   - 'devUpdate:main'
@@ -36,7 +30,7 @@ build:
 deploy:
   - 'build:assets'
   - 'copy:deploy'
-  - 'watch'  
+
 
 # Server
 server:

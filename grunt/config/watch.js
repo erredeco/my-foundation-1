@@ -45,15 +45,7 @@ module.exports = {
     },
     files: ['**/*', '!{scss,js}/**/*'],
     tasks: ['copy:dist']
-  },  
-  deploy: {
-    options:{
-      cwd: '<%= paths.destinationdir %>/Assets/',
-      livereload: true    
-    },
-    files:['**/*'], 
-    tasks:['copy:deploy']    
-  }  
+  }
 };
 
 

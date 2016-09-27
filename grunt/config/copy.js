@@ -15,20 +15,6 @@ module.exports = {
     }]
   },
 
-  local: {
-    files: [{
-      expand:true, 
-      cwd: '<%= paths.foundationdir %>', 
-      src: ['scss/settings/_settings.scss'], 
-      dest: '<%= paths.sourcedir %>'
-      },{
-      expand:true, 
-      cwd: '<%= paths.mydir %>', 
-      src: ['**/*.*'], 
-      dest: '<%= paths.sourcedir %>'
-      }]
-  },
-
   update: {
     files: [{
       // copy the configuration file from foundation dir to sourcedir

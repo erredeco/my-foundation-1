@@ -65,8 +65,7 @@ as the MAMP is in  ```Users/riccardo/Sites/typo3.7.development.it/ the path depl
 
 - grunt clean
 	- deletes ./dist
-- grunt inizialize
-	- performs clean, downloads dependencies from bower, copies relevant js and scss files to source folder
+
 - grunt build:assets
 	- 	concat the foundation assets from source and uglifies them in dist folder
 - grunt build:pages
