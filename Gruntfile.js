@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       deploydir: grunt.file.readJSON('deploy.json').directory,
       
       destinationdir: './dist/',
-      foundationdir: '.<%= paths.nodemodules %>foundation-sites/',
+      foundationdir: '<%= paths.nodemodules %>foundation-sites/',
       mydir: './localsource',
       sourcedir: './source/',
       tempjsdir:'<%= paths.sourcedir %>assets/js/temp/',
