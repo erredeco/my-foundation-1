@@ -25,7 +25,7 @@ module.exports = {
 
   },
   postcss: {
-    files: '<%= paths.destinationdir %>assets/css/*.css',
+    files: '<%= paths.destinationdir %>Assets/css/*.css',
     tasks: ['postcss:dist','newer:postcss:dist']
 
   },
@@ -45,7 +45,15 @@ module.exports = {
     },
     files: ['**/*', '!{scss,js}/**/*'],
     tasks: ['copy:dist']
-  } 
+  },  
+  deploy: {
+    options:{
+      cwd: '<%= paths.destinationdir %>/Assets/',
+      livereload: true    
+    },
+    files:['**/*'], 
+    tasks:['copy:deploy']    
+  }  
 };
 
 
