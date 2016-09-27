@@ -25,7 +25,7 @@ module.exports = {
 
   },
   postcss: {
-    files: '<%= paths.destinationdir %>Assets/css/*.css',
+    files: '<%= paths.destinationdir %>Assets/Css/*.css',
     tasks: ['postcss:dist','newer:postcss:dist']
 
   },
