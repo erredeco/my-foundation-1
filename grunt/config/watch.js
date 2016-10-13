@@ -40,7 +40,7 @@ module.exports = {
 
   assets: {
     options: {
-      cwd: '<%= paths.sourcedir %>assets/',
+      cwd: '<%= paths.sourcedir %>Assets/',
       livereload: true
     },
     files: ['**/*', '!{scss,js}/**/*'],
