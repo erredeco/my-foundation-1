@@ -10,6 +10,5 @@ dist
 bck
 bower_components
 node_modules
-source/assets/scss
 source/assets/js/vendor
 source/assets/js/temp
