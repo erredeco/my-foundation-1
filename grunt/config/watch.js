@@ -10,7 +10,7 @@ module.exports = {
     tasks: 'build'
   },
   js: {
-    files: ['<%= paths.sourcedir %>assets/js/**/*.js', './grunt/config.js'],
+    files: ['<%= paths.sourcedir %>assets/js/**/*.js', './files.json'],
     tasks: ['concat','newer:concat','babel','uglify','newer:uglify']       
   },
   
