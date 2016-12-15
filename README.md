@@ -88,94 +88,121 @@ bundle exec compass watch to build css from sass source
 **Inclusion of the foundation js files
 
 All files are included inside the files.json file, in the correct inclusion order. If you need only a _partial_ inclusion, refer to this documentation (ONE DAY I WILL USE THIS MAP TO INCLUDE THE FILES!):
-
+look also at node_modules/foundation-sites/customizer/config.yml
 
 ```
 {
+  "abide":[
+    "foundation.abide.js"
+  ],
+  
   "accordion": [
-    "foundation.util.keyboard.js",
-    "foundation.util.motion.js"
+    "foundation.accordion.js",    
+      "foundation.util.keyboard.js",
+      "foundation.util.motion.js"
   ],
   "accordionMenu": [
-    "foundation.util.keyboard.js",
-    "foundation.util.motion.js",
-    "foundation.util.nest.js"
+    "foundation.accordionMenu.js",  
+      "foundation.util.keyboard.js",
+      "foundation.util.motion.js",
+      "foundation.util.nest.js"
   ],
   "drilldown": [
-    "foundation.util.keyboard.js",
-    "foundation.util.motion.js",
-    "foundation.util.nest.js"
+    "foundation.drilldown.js",
+      "foundation.util.keyboard.js",
+      "foundation.util.motion.js",
+      "foundation.util.nest.js"
   ],
-  "dropdownMenu": [
-    "foundation.util.keyboard.js",
-    "foundation.util.motion.js",
-    "foundation.util.box.js",
-    "foundation.util.nest.js"
-  ],
+  
   "dropdown": [
-    "foundation.util.keyboard.js",
-    "foundation.util.box.js",
-    "foundation.util.triggers.js"
+    "foundation.dropdown.js",
+      "foundation.util.keyboard.js",
+      "foundation.util.box.js",
+      "foundation.util.triggers.js"
+  ],  
+  
+  "dropdownMenu": [
+    "foundation.dropdownMenu.js",
+      "foundation.util.keyboard.js",
+      "foundation.util.motion.js",
+      "foundation.util.box.js",
+      "foundation.util.nest.js"
   ],
+
+  "equalizer": [
+    "foundation.equalizer.js",    
+      "foundation.util.mediaQuery.js",  
+      "foundation.util.timerAndImageLoader.js",   
+  ],
+
   "interchange": [
-    "foundation.util.triggers.js",
-    "foundation.util.timerAndImageLoader.js"
+    "foundation.interchange.js",  
+      "foundation.util.triggers.js",
+      "foundation.util.timerAndImageLoader.js"
   ],
   "magellan": [
     "foundation.util.motion.js"
   ],
   "offcanvas": [
-    "foundation.util.motion.js",
-    "foundation.util.triggers.js"
+    "foundation.offcanvas.js"
   ],
   "orbit": [
-    "foundation.util.motion.js",
-    "foundation.util.timerAndImageLoader.js",
-    "foundation.util.keyboard.js",
-    "foundation.util.touch.js"
+    "foundation.orbit.js",  
+      "foundation.util.motion.js",
+      "foundation.util.timerAndImageLoader.js",
+      "foundation.util.keyboard.js",
+      "foundation.util.touch.js"
   ],
   "responsiveMenu": [
-    "foundation.util.triggers.js",
-    "foundation.util.mediaQuery.js",
-    "foundation.accordionMenu.js",
-    "foundation.drilldown.js",
-    "foundation.dropdownMenu.js",
-    "foundation.util.nest.js"
+    "foundation.responsiveMenu.js",    
+      "foundation.util.triggers.js",
+      "foundation.util.mediaQuery.js"
   ],
   "responsiveToggle": [
-    "foundation.util.mediaQuery.js"
+    "foundation.responsiveToggle.js",  
+      "foundation.util.mediaQuery.js"
   ],
   "reveal": [
-    "foundation.util.box.js",
-    "foundation.util.motion.js",
-    "foundation.util.triggers.js",
-    "foundation.util.mediaQuery.js"
+    "foundation.reveal.js",  
+      "foundation.util.box.js",
+      "foundation.util.motion.js",
+      "foundation.util.triggers.js",
+      "foundation.util.mediaQuery.js",
+      "foundation.util.keyboard.js"      
   ],
   "slider": [
-    "foundation.util.triggers.js",
-    "foundation.util.motion.js",
-    "foundation.util.keyboard.js",
-    "foundation.util.touch.js"
+    "foundation.slider.js",  
+      "foundation.util.box.js",
+      "foundation.util.motion.js",
+      "foundation.util.triggers.js",
+      "foundation.util.mediaQuery.js",
+      "foundation.util.keyboard.js" 
   ],
   "sticky": [
-    "foundation.util.triggers.js",
-    "foundation.util.mediaQuery.js"
+    "foundation.sticky.js",    
+      "foundation.util.triggers.js",
+      "foundation.util.mediaQuery.js"
   ],
   "tabs": [
-    "foundation.util.keyboard.js",
-    "foundation.util.timerAndImageLoader.js"
+    "foundation.tabs.js",    
+      "foundation.util.keyboard.js",
+      "foundation.util.timerAndImageLoader.js"
   ],
   "toggler": [
-    "foundation.util.motion.js"
+    "foundation.toggler.js",     
+      "foundation.util.motion.js"
   ],
   "tooltip": [
-    "foundation.util.box.js",
-    "foundation.util.triggers.js",
-    "foundation.util.mediaQuery.js",
-    "foundation.util.motion.js"
+    "foundation.tooltip.js",       
+      "foundation.util.box.js",
+      "foundation.util.triggers.js",
+      "foundation.util.mediaQuery.js",
+      "foundation.util.motion.js"
   ],
-  "motion-ui": [
-    "foundation.util.motion.js"
-  ]
 }
 ```
+It seems that
+- core
+- foundation.zf.responsiveAccordionTabs
+
+are always present

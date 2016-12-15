@@ -7,7 +7,7 @@ module.exports = {
     },                      
     js: {
       files:[{ 
-          src: ['<%= paths.tempjsdir %>foundation.babelized.js','<%= files.appjs %>'],
+          src: ['<%= paths.vendor %>what-input/dist/what-input.js','<%= paths.tempjsdir %>foundation.babelized.js','<%= files.appjs %>'],
           dest: '<%= paths.destinationdir %>Assets/Js/all.min.js'   
 
 

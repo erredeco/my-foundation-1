@@ -27,7 +27,8 @@
     "<%= paths.nodemodules %>foundation-sites/js/foundation.sticky.js",    
     "<%= paths.nodemodules %>foundation-sites/js/foundation.tabs.js",
     "<%= paths.nodemodules %>foundation-sites/js/foundation.toggler.js",   
-    "<%= paths.nodemodules %>foundation-sites/js/foundation.tooltip.js"
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.tooltip.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
   ],
   "appjs":[
     "<%= paths.sourcedir %>assets/js/app.js"   
