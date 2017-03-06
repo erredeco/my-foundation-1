@@ -24,6 +24,7 @@ in the main folder, create a file called deploy.json; the file *must* contain:
   "uglifyOutputStyleCompress":true,
   "uglifyOutputStyleBeautify":false,
 ```
+
 Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.
 
 
@@ -37,13 +38,11 @@ Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compre
 
 Please note that this file _IS NOT_ saved in git! 
 
-on Windows, you should put all the "Istances" of my-foundation-1  inside 
-
-```C:\Progetti\
+on Windows, you should put all the "Istances" of my-foundation-1  inside `C:\Progetti\`
  
- e.g. ``` "C:\Progetti\Public_assets_for_typo3.test7.it"
+ e.g. ` "C:\Progetti\Public_assets_for_typo3.test7.it"`
  
- e.g. ``` "C:\Progetti\Public_assets_for_www.teci.it.upgrade.bhuman.it"  
+ e.g. `"C:\Progetti\Public_assets_for_www.teci.it.upgrade.bhuman.it"`  
   
  as the XAMPP is in "C:\xampp\htdocs\typo3.test7.it", the path deploydir must be:
 
@@ -53,11 +52,11 @@ on Windows, you should put all the "Istances" of my-foundation-1  inside
 }
 ```
 
-on MAC:  the "istances" of my-foundation-1 are: ```Users/riccardo/Progetti/
+on MAC:  the "istances" of my-foundation-1 are: `Users/riccardo/Progetti/`
 
-e.g. ```Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it
+e.g. `Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it`
 
-as the MAMP is in  ```Users/riccardo/Sites/typo3.7.development.it/ the path deploydir must be:
+as the MAMP is in  `Users/riccardo/Sites/typo3.7.development.it/` the path deploydir must be:
 ```
 {
 	"directory":"../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
@@ -83,6 +82,7 @@ body{
 ```
 
 for the sprite generation you can use the same prefix, and put all files in /source/assets/Img_sprites/ e.g.
+
 ```
 a.doc{
   background: resolve('doc.png') no-repeat 0 0;
@@ -93,9 +93,6 @@ a.pdf{
 
 }
 ```
-
-
-
 
 ## available commands with grunt:
 
