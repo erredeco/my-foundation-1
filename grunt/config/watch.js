@@ -19,14 +19,14 @@ module.exports = {
     tasks: ['modernizr']
   },
 
-  compass: {
+  sass: {
     files: '<%= paths.sourcedir %>scss/**/*.scss',
-    tasks: ['compass:dist','newer:compass:dist']
+    tasks: ['sass','newer:sass']
 
   },
   postcss: {
     files: '<%= paths.destinationdir %>Assets/Css/*.css',
-    tasks: ['postcss:dist','newer:postcss:dist']
+    tasks: ['postcss:all','newer:postcss:all']
 
   },
 

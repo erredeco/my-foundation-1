@@ -2,14 +2,6 @@
 my foundation 1 is my first attempt to build a development enviroment using bower and grunt; it is still flawed
 
 ##Installation instructions 
-####Install Ruby
-gem install sass (*)
-
-gem install compass (*)
-
-gem install bundler (*)
-
-bundle install
 
 ####Install Grunt and Bower:  
 npm install -g grunt-cli bower (*)
@@ -22,11 +14,24 @@ npm install -g grunt-cli bower (*)
 npm install (*)
 
 
-in the main folder, create a file called deploy.json; the file will contain the folder for the deploy, e.g.
+in the main folder, create a file called deploy.json; the file *must* contain:
+
+1) the following configuration for the minified output:
+
+```
+  "sassOutputStyle":"expanded",
+  "uglifyOutputStylePreserveComments":false,
+  "uglifyOutputStyleCompress":true,
+  "uglifyOutputStyleBeautify":false,
+```
+Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.
+
+
+2) the folder for the deploy, e.g.
 
 ```
 {
-	"directory":"../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+	"directory":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
 }
 ```
 
@@ -58,6 +63,37 @@ as the MAMP is in  ```Users/riccardo/Sites/typo3.7.development.it/ the path depl
 	"directory":"../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
 }
 ```
+
+## About the postcss:main configuration
+
+To emulate compass utilities like image-url and sprite generation, I have addes some postcss functions:
+
+The full documentation is available at:
+
+- https://github.com/borodean/postcss-assets
+- https://github.com/2createStudio/postcss-sprites
+
+About image-url (postcss-assets) you just have to put the images in /source/assets/Img_layout/ and write in your scss (css):
+
+
+```
+body{
+ background-image: resolve('3771900.jpg');
+}
+```
+
+for the sprite generation you can use the same prefix, and put all files in /source/assets/Img_sprites/ e.g.
+```
+a.doc{
+  background: resolve('doc.png') no-repeat 0 0;
+}
+
+a.pdf{
+  background: resolve('pdf.png') no-repeat 0 0;
+
+}
+```
+
 
 
 

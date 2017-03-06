@@ -2,12 +2,13 @@
 
 module.exports = {
     options: {
-        preserveComments: false,
-        compress: true
+        preserveComments: '<%=uglifyOutputStylePreserveComments%>',
+        compress: '<%=uglifyOutputStyleCompress%>',
+        beautify:'<%=uglifyOutputStyleBeautify%>'
     },                      
     js: {
       files:[{ 
-          src: ['<%= paths.vendor %>what-input/dist/what-input.js','<%= paths.tempjsdir %>foundation.babelized.js','<%= files.appjs %>'],
+          src: ['<%= files.touglifyjs %>'],
           dest: '<%= paths.destinationdir %>Assets/Js/all.min.js'   
 
 

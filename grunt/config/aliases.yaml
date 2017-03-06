@@ -12,6 +12,8 @@ cleaner:
 #Backup things
 backup:
   - 'copy:backup'
+
+
 # Build everything
 build:
   - 'build:assets'
@@ -23,12 +25,18 @@ build:
   - 'concat:foundation'
   - 'babel:foundation'
   - 'uglify'
-  - 'compass'
-  - 'postcss'  
+  - 'sass'
+  - 'postcss:all'  
+
+# Minify (not used yet!)
+minify:
+  - 'uglify'
+  - 'postcss:nano'
 
 # Deploy
 deploy:
   - 'build:assets'
+  - 'minify'
   - 'copy:deploy'
 
 

@@ -4,6 +4,12 @@ module.exports = function(grunt) {
     //Put current date into a variable.
     date: grunt.template.today("yyyy-mm-dd-HH.MM.ss"), 
     
+    //See readme - some environment variables:
+    sassOutputStyle: grunt.file.readJSON('configuration.json').sassOutputStyle,
+    uglifyOutputStylePreserveComments: grunt.file.readJSON('configuration.json').uglifyOutputStylePreserveComments,
+    uglifyOutputStyleCompress: grunt.file.readJSON('configuration.json').uglifyOutputStyleCompress,
+    uglifyOutputStyleBeautify: grunt.file.readJSON('configuration.json').uglifyOutputStyleBeautify,
+
     //Define all paths
     paths: {
       //Paths for the external components
@@ -12,12 +18,9 @@ module.exports = function(grunt) {
 
       //Local paths
       bckdir: './BCK/',
-
       datadir: './data',
-
       // see README!!!!
-      deploydir: grunt.file.readJSON('deploy.json').directory,
-      
+      deploydir: grunt.file.readJSON('configuration.json').deploydir,
       destinationdir: './dist/',
       mydir: './localsource',
       sourcedir: './source/',
@@ -36,8 +39,11 @@ module.exports = function(grunt) {
       grunt: 'Gruntfile.js',
       
       //Define all files in files.json
-      foundationjs: grunt.file.readJSON('files.json').foundationjs,
-      appjs:  grunt.file.readJSON('files.json').appjs
+      foundationjs: grunt.file.readJSON('files.json').source.foundationjs,
+      appjs:  grunt.file.readJSON('files.json').source.appjs,
+
+      touglifyjs: grunt.file.readJSON('files.json').touglifyjs,
+
     },
     pkg: grunt.file.readJSON('package.json')
   };
