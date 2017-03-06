@@ -4,14 +4,24 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 ##Installation instructions 
 
 ####Install Grunt and Bower:  
-npm install -g grunt-cli bower (*)
+
+`npm install -g grunt-cli bower (*)`
+
+
+
 
 ##copy from git
 
 
 ##Running instructions 
 
-npm install (*)
+`npm install` (*)
+
+`grunt bower:install`
+
+`grunt` to create all
+
+`grunt server` to fire the server
 
 
 in the main folder, create a file called deploy.json; the file *must* contain:
@@ -26,6 +36,8 @@ in the main folder, create a file called deploy.json; the file *must* contain:
 ```
 
 Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.
+
+Please note that someday it will be replaced by the `postcss:nano` task
 
 
 2) the folder for the deploy, e.g.
