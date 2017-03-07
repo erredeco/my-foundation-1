@@ -5,6 +5,7 @@
 // https://github.com/ben-eb/cssnano
 var postcss = require('postcss');
 var updateRule = require('postcss-sprites/lib/core').updateRule;
+
 module.exports = {
 
     all:{
@@ -19,14 +20,14 @@ module.exports = {
 		        	cachebuster: true,
 		        	loadPaths: ['Img_layout/','Img_sprites'],
 		        	relative: true,
-		        	// does not work with <%= paths.destinationdir %> for unknown reasons.
+		        	// does not work with <%= paths.destinationdir %>
 		        	// https://github.com/borodean/postcss-assets/issues/66
 		        	// http://stackoverflow.com/questions/42602482/configure-grunt-postcss-assets-paths-relative
 		        	basePath:'./dist/Assets/'
 		        }),
 
 		        require('postcss-sprites')({
-				    // does not work with <%= paths.destinationdir %> for unknown reasons.
+				    // does not work with <%= paths.destinationdir %>
 				    spritePath: './dist/Assets/Img_layout/',
 					retina: true,
 					hooks: {	

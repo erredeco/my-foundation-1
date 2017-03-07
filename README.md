@@ -124,7 +124,7 @@ a.pdf{
 - grunt deploy
 	- build assets and copy them into the deploy folder.	
 
-bundle exec compass watch to build css from sass source
+
 
 (*) run the command with "sudo " if it doesn't work
 
