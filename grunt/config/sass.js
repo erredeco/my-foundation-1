@@ -4,7 +4,7 @@ module.exports = {
     options: {
         outputStyle:'<%= sassOutputStyle %>',
         sourceMap: true,
-        sourceComments:true,
+        sourceComments:'<%= sassOutputStyleComments %>',
         includePaths:  ['node_modules/foundation-sites/scss','node_modules/motion-ui/src'],		
     },
 

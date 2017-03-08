@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     
     //See readme - some environment variables:
     sassOutputStyle: grunt.file.readJSON('configuration.json').sassOutputStyle,
+    sassOutputStyleComments: grunt.file.readJSON('configuration.json').sassOutputStyleComments,
     uglifyOutputStylePreserveComments: grunt.file.readJSON('configuration.json').uglifyOutputStylePreserveComments,
     uglifyOutputStyleCompress: grunt.file.readJSON('configuration.json').uglifyOutputStyleCompress,
     uglifyOutputStyleBeautify: grunt.file.readJSON('configuration.json').uglifyOutputStyleBeautify,
