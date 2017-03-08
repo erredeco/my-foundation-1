@@ -5,7 +5,6 @@
 update:
   - 'devUpdate:main'
   - 'bower:install'
-  - 'copy:update'
 
 cleaner:
   - 'clean'
@@ -26,17 +25,13 @@ build:
   - 'babel:foundation'
   - 'uglify'
   - 'sass'
-  - 'postcss:all'  
-
-# Minify (not used yet!)
-minify:
-  - 'uglify'
-  - 'postcss:nano'
+  - 'postcss:all'
 
 # Deploy
 deploy:
-  - 'build:assets'
-  - 'minify'
+
+  - 'imagemin'
+  - 'postcss:deploy'
   - 'copy:deploy'
 
 
