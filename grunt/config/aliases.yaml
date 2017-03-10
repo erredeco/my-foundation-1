@@ -37,6 +37,7 @@ minify:
 deploy:
   - 'build:assets'
   - 'minify'
+  - 'prettify'
   - 'copy:deploy'
 
 

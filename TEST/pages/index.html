@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="it">
+    <head>
+        <!--The Character Encoding Should be the First Line of Your HTML After the Root and Head Elements-->
+        <meta charset="utf-8" />
+        <!--Tells the IE rendering engine it should use the latest version of the IE rendering environment-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>index.html</title>
+        <meta name="description" content="" />
+        <!-- Sets the viewport width to the width of the device and the scale to 100% (standard) -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- Using a full, uncompressed build of Modernizr (see http://modernizr.com/); please replace with a lighter build with the features you actually use! -->
+        <script src="../Assets/Js/Vendor/modernizr-custom.min.js" /></script>
+        <!-- Other scripts that should be loaded in <head> -->
+        <script type="text/javascript" src=""></script>
+        <link rel="stylesheet" href="../Assets/Css/app.css" /> </head>
+    <body>
+        <header class="header row column">
+            <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle></button>
+                <div class="title-bar-title">Menu</div>
+            </div>
+            <div class="top-bar" id="example-menu">
+                <div class="top-bar-left">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                        <li class="menu-text">Site Title</li>
+                        <li>
+                            <a href="#">One</a>
+                            <ul class="menu vertical">
+                                <li><a href="#">One</a></li>
+                                <li><a href="#">Two</a></li>
+                                <li><a href="#">Three</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Two</a></li>
+                        <li><a href="#">Three</a></li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        <li>
+                            <input type="search" placeholder="Search">
+                        </li>
+                        <li>
+                            <button type="button" class="button">Search</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <h1>Home</h1>
+            <hr>
+        </header>
+        <nav class="column row" aria-label="You are here:" role="navigation">
+            <ul class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li class="disabled">Gene Splicing</li>
+                <li>
+                    <span class="show-for-sr">Current: </span> Cloning
+                </li>
+            </ul>
+        </nav>
+        <a href="/samples/content/sample-text-formatting.html">Sample text formatting</a>
+        <!-- Try to load jQuery directly from CDN; if it fails, switch to local version -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="../Assets/js/vendor/jquery.min.js"><\/script>')
+        </script>
+        <!-- Load the full foundation javascript components; to choose individual components see the subfolder /../Assets/js/foundation/foundation/  -->
+        <script src="../Assets/Js/all.min.js"></script>
+    </body>
+</html>
