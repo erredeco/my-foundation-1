@@ -52,35 +52,26 @@ module.exports = {
 				    // use only images inside Img_sprites
 					filterBy: function(image) {
 					        
-					        if (!/Img_sprites\//.test(image.url)) {
-					            return Promise.reject();
-					        }
-
-					        return Promise.resolve('Img_sprites');
-					    }
-
-					    
-
-					    
-
-
+				        if (!/Img_sprites\//.test(image.url)) {
+				            return Promise.reject();
+				        }
+					    return Promise.resolve('Img_sprites');
+					}
 		        }),
-
-
-
 				
 		    ]			
     	},
     	src: '<%= paths.destinationdir %>Assets/Css/*.css'
     },
 
-    nano:{
+    deploy:{
     	options:{
 			map: true, 
 		    processors: [
 				require('cssnano')()
 		    ]			
     	},
-    	src: '<%= paths.destinationdir %>Assets/Css/*.css'
+    	src: '<%= paths.destinationdir %>Assets/Css/app.css',
+    	dest: '<%= paths.deploydir %>Assets/Css/app.css'
     }
 };

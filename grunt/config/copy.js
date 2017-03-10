@@ -15,17 +15,6 @@ module.exports = {
     }]
   },
 
-  update: {
-    files: [{
-      // copy the configuration file from foundation dir to sourcedir
-      expand:true, 
-      cwd: '<%= paths.foundationdir %>', 
-      src: ['scss/settings/_settings.scss'], 
-      dest:'<%= paths.sourcedir %>'     
-    }]
-
-  },
-
   //use this to backup scss and  javascript  files into another folder
   //please take note that you must do a diff after the update
   backup: { 
@@ -41,7 +30,7 @@ module.exports = {
     files: [{
       expand:true, 
       cwd: '<%= paths.destinationdir %>Assets/',
-      src: ['./**/*.*'],     
+      src: ['**/*','!{Css,Img_layout}/**/*'],     
       dest:'<%= paths.deploydir %>Assets/'
     }]  
   }

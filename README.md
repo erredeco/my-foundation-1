@@ -122,7 +122,7 @@ a.pdf{
 	- launch server
 
 - grunt deploy
-	- build assets and copy them into the deploy folder.	
+	- optimizes css via nano and optimizes images but not js (already done) and copies all (css, js, images)  into the deploy folder.	
 
 
 
