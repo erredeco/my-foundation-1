@@ -1,6 +1,0 @@
-{
-	"uglifyOutputStylePreserveComments":false,
-	"uglifyOutputStyleCompress":true,
-	"uglifyOutputStyleBeautify":false,
-	"deploydir":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
-}
