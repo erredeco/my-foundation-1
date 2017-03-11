@@ -24,28 +24,28 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 `grunt server` to fire the server
 
 
-in the main folder, create a file called deploy.json; the file *must* contain:
-
-1) the following configuration for the minified output:
+in the main folder, create a file called deploy.json; the file *must* contain the following lines:
 
 ```
-  "sassOutputStyle":"expanded",
+{
   "uglifyOutputStylePreserveComments":false,
+  "uglifyOutputStyleCompress":true,
+  "uglifyOutputStyleBeautify":false,
+  "deploydir":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+}
+```
+
+1) the first 2 lines are the  configuration for the minified output:
+
+```
   "uglifyOutputStyleCompress":true,
   "uglifyOutputStyleBeautify":false,
 ```
 
-Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.
-
-Please note that someday it will be replaced by the `postcss:nano` task
-
-
-2) the folder for the deploy, e.g.
+2) the other one is the folder for the deploy, e.g.
 
 ```
-{
 	"directory":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
-}
 ```
 
 Please note that this file _IS NOT_ saved in git! 

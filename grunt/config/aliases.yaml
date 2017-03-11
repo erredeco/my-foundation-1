@@ -32,7 +32,8 @@ deploy:
   - 'imagemin'
   - 'postcss:deploy'
   - 'copy:deploy'
-  - 'prettify'
+# prettify copies also pages, not needed now :)
+#  - 'prettify'
 
 # Server
 server:

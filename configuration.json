@@ -1,6 +1,4 @@
 {
-	"sassOutputStyle":"expanded",
-  "sassOutputStyleComments":true,
 	"uglifyOutputStylePreserveComments":false,
 	"uglifyOutputStyleCompress":true,
 	"uglifyOutputStyleBeautify":false,

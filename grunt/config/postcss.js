@@ -71,7 +71,13 @@ module.exports = {
 				require('cssnano')()
 		    ]			
     	},
-    	src: '<%= paths.destinationdir %>Assets/Css/app.css',
-    	dest: '<%= paths.deploydir %>Assets/Css/app.css'
+
+	    files:[{
+        	expand: true,                  
+        	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
+       		src: ['**/*.css'],   
+        	dest: '<%= paths.deploydir %>Assets/Css/', 
+        	ext: '.css'                
+    	}]
     }
 };
