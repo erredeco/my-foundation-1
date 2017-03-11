@@ -77,7 +77,7 @@ module.exports = {
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
        		src: ['**/*.css'],   
         	dest: '<%= paths.deploydir %>Assets/Css/', 
-        	ext: '.css'                
+        	ext: '.min.css'                
     	}]
     }
 };

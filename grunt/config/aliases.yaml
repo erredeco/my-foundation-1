@@ -23,7 +23,7 @@ build:
   - 'copy:dist'
   - 'concat:foundation'
   - 'babel:foundation'
-  - 'uglify'
+  - 'concat:all'
   - 'sass'
   - 'postcss:all'
 
@@ -32,6 +32,7 @@ deploy:
   - 'imagemin'
   - 'postcss:deploy'
   - 'copy:deploy'
+  - 'uglify'
 # prettify copies also pages, not needed now :)
 #  - 'prettify'
 

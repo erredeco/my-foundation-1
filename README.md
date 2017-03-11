@@ -28,27 +28,11 @@ in the main folder, create a file called deploy.json; the file *must* contain th
 
 ```
 {
-  "uglifyOutputStylePreserveComments":false,
-  "uglifyOutputStyleCompress":true,
-  "uglifyOutputStyleBeautify":false,
   "deploydir":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
 }
 ```
 
-1) the first 2 lines are the  configuration for the minified output:
-
-```
-  "uglifyOutputStyleCompress":true,
-  "uglifyOutputStyleBeautify":false,
-```
-
-2) the other one is the folder for the deploy, e.g.
-
-```
-	"directory":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
-```
-
-Please note that this file _IS NOT_ saved in git! 
+that is the folder for the deploy. Please note that this file _IS NOT_ saved in git! 
 
 on Windows, you should put all the "Istances" of my-foundation-1  inside `C:\Progetti\`
  
@@ -122,7 +106,10 @@ a.pdf{
 	- launch server
 
 - grunt deploy
-	- optimizes css via nano and optimizes images but not js (already done) and copies all (css, js, images)  into the deploy folder.	
+	- optimizes css via nano 
+  - optimizes js via uglify
+  - optimizes images via imagemin
+  - copies all relevant files, including the js already optimized into the deploy folder.	
 
 
 

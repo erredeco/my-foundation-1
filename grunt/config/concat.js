@@ -9,5 +9,12 @@ module.exports = {
       		src: ['<%= files.foundationjs %>'], 
       		dest: '<%= paths.tempjsdir %>foundation.all.js'
       	}]
+	},
+	all: {
+		files:[{
+			src: ['<%= files.appjs %>'], 
+			dest: '<%= paths.destinationdir %>Assets/Js/all.js'
+		}]
+
 	}
 };

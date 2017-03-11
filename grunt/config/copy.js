@@ -9,7 +9,7 @@ module.exports = {
     {         
       expand:true,
       cwd: '<%= paths.sourcedir %>assets/',
-      src: ['**/*', '!{scss,js}/**/*'],
+      src: ['**/*', '!{js}/**/*'],
       dest:'<%= paths.destinationdir %>Assets/',  
       filter: 'isFile'
     }]
@@ -30,7 +30,11 @@ module.exports = {
     files: [{
       expand:true, 
       cwd: '<%= paths.destinationdir %>Assets/',
-      src: ['**/*','!{Css,Img_layout}/**/*'],     
+      src: [
+        '**/*',
+        '!{Css,Img_layout}/**/*',
+        '!Js/all.js' //excluding here the file that is already processed by uglify!
+        ],     
       dest:'<%= paths.deploydir %>Assets/'
     }]  
   }

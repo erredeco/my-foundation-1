@@ -1,44 +1,40 @@
 {
-  "source":{
-    "foundationjs":[
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.core.js",    
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.box.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.keyboard.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.mediaQuery.js",      
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.motion.js",        
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.nest.js",   
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.timerAndImageLoader.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.touch.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.util.triggers.js",               
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.abide.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.accordion.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.accordionMenu.js",    
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.drilldown.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.dropdown.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.dropdownMenu.js",    
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.equalizer.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.interchange.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.magellan.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.offcanvas.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.orbit.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.responsiveMenu.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.responsiveToggle.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.reveal.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.slider.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.sticky.js",    
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.tabs.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.toggler.js",   
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.tooltip.js",
-      "<%= paths.nodemodules %>foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
-    ],
-    "appjs":[
-      "<%= paths.sourcedir %>assets/js/app.js"   
-    ]
-  },
 
-  "touglifyjs":[
+  "foundationjs":[
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.core.js",    
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.box.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.keyboard.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.mediaQuery.js",      
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.motion.js",        
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.nest.js",   
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.timerAndImageLoader.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.touch.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.util.triggers.js",               
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.abide.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.accordion.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.accordionMenu.js",    
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.drilldown.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.dropdown.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.dropdownMenu.js",    
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.equalizer.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.interchange.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.magellan.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.offcanvas.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.orbit.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.responsiveMenu.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.responsiveToggle.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.reveal.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.slider.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.sticky.js",    
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.tabs.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.toggler.js",   
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.tooltip.js",
+    "<%= paths.nodemodules %>foundation-sites/js/foundation.zf.responsiveAccordionTabs.js"
+  ],
+
+  "appjs":[
     "<%= paths.vendor %>what-input/dist/what-input.js",
-    "<%= paths.tempjsdir %>foundation.babelized.js",
-    "<%= files.appjs %>"
+    "<%= paths.tempjsdir %>foundation.babelized.js",   
+    "<%= paths.sourcedir %>assets/js/app.js"   
   ]
 }

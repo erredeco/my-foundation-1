@@ -4,10 +4,10 @@
 *.sublime-project
 *.log
 prova.*
-deploy.json
+configuration.json
 
 dist
-bck
+BCK
 bower_components
 node_modules
 source/assets/js/vendor/*

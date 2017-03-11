@@ -11,7 +11,7 @@ module.exports = {
   },
   js: {
     files: ['<%= paths.sourcedir %>assets/js/**/*.js', './files.json'],
-    tasks: ['concat','newer:concat','babel','uglify','newer:uglify']       
+    tasks: ['concat','newer:concat','babel']       
   },
   
   modernizr:{
@@ -43,7 +43,7 @@ module.exports = {
       cwd: '<%= paths.sourcedir %>Assets/',
       livereload: true
     },
-    files: ['**/*', '!{scss,js}/**/*'],
+    files: ['**/*', '!{js}/**/*'],
     tasks: ['copy:dist']
   }
 };
