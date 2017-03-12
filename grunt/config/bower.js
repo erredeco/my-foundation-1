@@ -2,7 +2,11 @@
 module.exports = {
   install: {
     options: {
-      copy: false
+      copy: false,
+      bowerOptions:{
+      	forceLatest: true
+
+      }
   }
 },
 };
