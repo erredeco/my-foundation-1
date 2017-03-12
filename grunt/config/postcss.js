@@ -67,9 +67,10 @@ module.exports = {
     deploy:{
     	options:{
 			map:  true, 
-			safe: true,
 		    processors: [
-				require('cssnano')()
+				require('cssnano')({
+					safe: true	
+				})
 		    ]			
     	},
 
