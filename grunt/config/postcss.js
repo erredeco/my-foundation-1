@@ -57,7 +57,7 @@ module.exports = {
 				        }
 					    return Promise.resolve('Sprites');
 					}
-		        }),
+		        })
 				
 		    ]			
     	},
