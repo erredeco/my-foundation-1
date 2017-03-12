@@ -10,7 +10,7 @@ module.exports = {
     files: [{
         expand: true,                  
         cwd: '<%= paths.destinationdir %>Assets/',                  
-        src: ['Img_layout/**/*.{png,jpg,gif,svg,jpeg}'],   
+        src: ['Images/**/*.{png,jpg,gif,svg,jpeg}'],   
         dest: '<%= paths.deploydir %>Assets/'                 
     }]
 

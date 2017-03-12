@@ -12,13 +12,13 @@ module.exports = function(grunt) {
 
       //Local paths
       bckdir: './BCK/',
-      datadir: '<%= paths.sourcedir %>data',
+      datadir: '<%= paths.sourcedir %>Data',
       // see README!!!!
       deploydir: grunt.file.readJSON('configuration.json').deploydir,
       destinationdir: './dist/',
       sourcedir: './source/',
-      tempjsdir:'<%= paths.sourcedir %>assets/js/temp/',
-      templatesdir:'<%= paths.sourcedir %>templates/',
+      tempjsdir:'<%= paths.sourcedir %>Assets/Js/temp/',
+      templatesdir:'<%= paths.sourcedir %>Templates/',
 
       get config() {
         return this.grunt + 'config/';

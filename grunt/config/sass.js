@@ -6,13 +6,16 @@ module.exports = {
         outputStyle:'expanded',
         sourceMap: true,
         sourceComments:true,
-        includePaths:  ['node_modules/foundation-sites/scss','node_modules/motion-ui/src'],		
+        includePaths:  [
+            'node_modules/foundation-sites/scss',
+            'node_modules/motion-ui/src'
+            ],		
     },
 
 	dist: {
 	    files:[{
         	expand: true,                  
-        	cwd: '<%= paths.sourcedir %>scss/',                  
+        	cwd: '<%= paths.sourcedir %>Scss/',                  
        		src: ['**/*.scss'],   
         	dest: '<%= paths.destinationdir %>Assets/Css/', 
         	ext: '.css'                

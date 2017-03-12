@@ -10,7 +10,7 @@ module.exports = {
     tasks: 'build'
   },
   js: {
-    files: ['<%= paths.sourcedir %>assets/js/**/*.js', './files.json'],
+    files: ['<%= paths.sourcedir %>Assets/Js/**/*.js', './files.json'],
     tasks: ['concat','newer:concat','babel']       
   },
   
@@ -20,7 +20,7 @@ module.exports = {
   },
 
   sass: {
-    files: '<%= paths.sourcedir %>scss/**/*.scss',
+    files: '<%= paths.sourcedir %>Scss/**/*.scss',
     tasks: ['sass','newer:sass']
 
   },
@@ -43,7 +43,7 @@ module.exports = {
       cwd: '<%= paths.sourcedir %>Assets/',
       livereload: true
     },
-    files: ['**/*', '!{js}/**/*'],
+    files: ['**/*', '!{Js}/**/*'],
     tasks: ['copy:dist']
   }
 };

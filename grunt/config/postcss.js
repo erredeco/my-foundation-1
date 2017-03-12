@@ -18,7 +18,7 @@ module.exports = {
 		        
 		        require('postcss-assets')({
 		        	cachebuster: true,
-		        	loadPaths: ['Img_layout/','Img_sprites'],
+		        	loadPaths: ['Images/','Sprites'],
 		        	relative: true,
 		        	// does not work with <%= paths.destinationdir %>
 		        	// https://github.com/borodean/postcss-assets/issues/66
@@ -28,7 +28,7 @@ module.exports = {
 
 		        require('postcss-sprites')({
 				    // does not work with <%= paths.destinationdir %>
-				    spritePath: './dist/Assets/Img_layout/',
+				    spritePath: './dist/Assets/Images/',
 					retina: true,
 					hooks: {	
 				        onUpdateRule: function(rule, token, image) {
@@ -52,10 +52,10 @@ module.exports = {
 				    // use only images inside Img_sprites
 					filterBy: function(image) {
 					        
-				        if (!/Img_sprites\//.test(image.url)) {
+				        if (!/Sprites\//.test(image.url)) {
 				            return Promise.reject();
 				        }
-					    return Promise.resolve('Img_sprites');
+					    return Promise.resolve('Sprites');
 					}
 		        }),
 				

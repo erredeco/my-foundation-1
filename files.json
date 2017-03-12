@@ -35,6 +35,6 @@
   "appjs":[
     "<%= paths.vendor %>what-input/dist/what-input.js",
     "<%= paths.tempjsdir %>foundation.babelized.js",   
-    "<%= paths.sourcedir %>assets/js/app.js"   
+    "<%= paths.sourcedir %>Assets/Js/app.js"   
   ]
 }
