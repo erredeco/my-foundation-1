@@ -28,7 +28,7 @@ module.exports = {
 
 		        require('postcss-sprites')({
 				    // does not work with <%= paths.destinationdir %>
-				    spritePath: './dist/Assets/Images/',
+				    spritePath: './dist/Assets/Sprites/',
 					retina: true,
 					hooks: {	
 				        onUpdateRule: function(rule, token, image) {
@@ -66,7 +66,8 @@ module.exports = {
 
     deploy:{
     	options:{
-			map: true, 
+			map:  true, 
+			safe: true,
 		    processors: [
 				require('cssnano')()
 		    ]			
