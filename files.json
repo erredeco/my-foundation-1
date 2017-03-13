@@ -34,7 +34,13 @@
 
   "appjs":[
     "<%= paths.vendor %>what-input/dist/what-input.js",
-    "<%= paths.tempjsdir %>foundation.babelized.js",   
+    "<%= paths.tempjsdir %>foundation.babelized.js", 
+    "<%= paths.vendor %>motion-ui/dist/motion-ui.js",  
     "<%= paths.sourcedir %>Assets/Js/app.js"   
+  ],
+
+  "filestoexcludefromuglify":[
+    "!Js/all.js",
+    "!Js/zuzzu.js"
   ]
 }

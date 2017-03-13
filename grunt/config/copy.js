@@ -26,15 +26,16 @@ module.exports = {
     }]
   },
   
-  deploy: {
+  deploy: {    
     files: [{
       expand:true, 
       cwd: '<%= paths.destinationdir %>Assets/',
       src: [
         '**/*',
         '!{Css,Images}/**/*',
-        '!Js/all.js' //excluding here the file that is already processed by uglify!
-        ],     
+        '<%= files.filestoexcludefromuglify%>' //excluding here the files that are already processed by uglify!
+        ], 
+      filter: 'isFile',    
       dest:'<%= paths.deploydir %>Assets/'
     }]  
   }
