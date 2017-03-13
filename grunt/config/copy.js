@@ -33,7 +33,9 @@ module.exports = {
       src: [
         '**/*',
         '!{Css,Images}/**/*',
-        '!Js/all.js' //excluding here the file that is already processed by uglify!
+        '<%= files.filestoexcludefromuglify%>'
+        
+        //'!Js/all.js' //excluding here the file that is already processed by uglify!
         ],     
       dest:'<%= paths.deploydir %>Assets/'
     }]  

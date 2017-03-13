@@ -36,5 +36,9 @@
     "<%= paths.vendor %>what-input/dist/what-input.js",
     "<%= paths.tempjsdir %>foundation.babelized.js",   
     "<%= paths.sourcedir %>Assets/Js/app.js"   
-  ]
+  ],
+   "filestoexcludefromuglify":[
+   "!Js/all.js",
+   "!Js/zuzzu.js"  
+  ] 
 }
