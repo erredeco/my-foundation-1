@@ -35,7 +35,7 @@ module.exports = {
         '!{Css,Images}/**/*',
         '<%= files.filestoexcludefromuglify%>' //excluding here the files that are already processed by uglify!
         ], 
-      filter: 'isFile',    
+      filter: 'isFile',
       dest:'<%= paths.deploydir %>Assets/'
     }]  
   }
