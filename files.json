@@ -38,8 +38,7 @@
     "<%= paths.vendor %>motion-ui/dist/motion-ui.js",  
     "<%= paths.sourcedir %>Assets/Js/app.js"   
   ],
-  "filestoexcludefromuglify":[
-    "!Js/all.js",
-    "!Js/zuzzu.js"
+  "filestoexcludefromcopy":[
+    "!Js/all.js"
   ]
 }

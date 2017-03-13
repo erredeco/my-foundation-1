@@ -34,7 +34,7 @@ module.exports = function(grunt) {
       //Define all files in files.json
       foundationjs: grunt.file.readJSON('files.json').foundationjs,
       appjs:  grunt.file.readJSON('files.json').appjs,
-      filestoexcludefromuglify: grunt.file.readJSON('files.json').filestoexcludefromuglify,
+      filestoexcludefromcopy: grunt.file.readJSON('files.json').filestoexcludefromcopy,
 
     },
     pkg: grunt.file.readJSON('package.json')
