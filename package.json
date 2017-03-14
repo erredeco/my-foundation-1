@@ -54,6 +54,7 @@
     "handlebars-helper-rel": "^0.2.0",
     "jit-grunt": "^0.10.0",
     "load-grunt-config": "^0.19.2",
+    "postcss": "^5.2.16",
     "postcss-assets": "^4.1.0",
     "postcss-sprites": "^4.2.0"
   }

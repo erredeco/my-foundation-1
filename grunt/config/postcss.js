@@ -77,7 +77,7 @@ module.exports = {
 	    files:[{
         	expand: true,                  
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
-       		src: ['**/*.css'],   
+       		src: ['**/*.css','!**/*.min.css'],   
         	dest: '<%= paths.deploydir %>Assets/Css/', 
         	ext: '.min.css'                
     	}]
