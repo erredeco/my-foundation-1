@@ -68,7 +68,7 @@ The full documentation is available at:
 - https://github.com/borodean/postcss-assets
 - https://github.com/2createStudio/postcss-sprites
 
-About image-url (postcss-assets) you just have to put the images in /source/assets/Img_layout/ and write in your scss (css):
+About image-url (postcss-assets) you just have to put the images in /source/Assets/Images/ and write in your scss (css):
 
 
 ```
@@ -77,7 +77,7 @@ body{
 }
 ```
 
-for the sprite generation you can use the same prefix, and put all files in /source/assets/Img_sprites/ e.g.
+for the sprite generation you can use the same prefix, and put all files in /source/Assets/Sprites/ e.g.
 
 ```
 a.doc{
@@ -89,6 +89,9 @@ a.pdf{
 
 }
 ```
+##IMPORTANT!!! 
+
+Due to a limitation of grunt-postcss, we had to include the "dist" path into the /grunt/postcss.js file!!
 
 ## available commands with grunt:
 

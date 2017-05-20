@@ -10,7 +10,10 @@ module.exports = {
 
     all:{
     	options:{
-			map: true, 
+			map: true,
+      map: {
+          inline: false
+      },
 		    processors: [
 		        require('autoprefixer')({
 		        	browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
@@ -49,7 +52,7 @@ module.exports = {
 			    	},
 
 
-				    // use only images inside Img_sprites
+				    // use only images inside Sprites
 					filterBy: function(image) {
 					        
 				        if (!/Sprites\//.test(image.url)) {
@@ -61,7 +64,14 @@ module.exports = {
 				
 		    ]			
     	},
-    	src: '<%= paths.destinationdir %>Assets/Css/*.css'
+      
+	    files:[{
+        	expand: true,                  
+        	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
+       		src: '**/*.temp.css',  
+        	dest: '<%= paths.destinationdir %>Assets/Css/', 
+        	ext: '.css'                
+    	}]
     },
 
     deploy:{
@@ -77,7 +87,7 @@ module.exports = {
 	    files:[{
         	expand: true,                  
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
-       		src: ['**/*.css','!**/*.min.css'],   
+       		src: ['**/*.css','!**/*.temp.css'],   
         	dest: '<%= paths.deploydir %>Assets/Css/', 
         	ext: '.min.css'                
     	}]

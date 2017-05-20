@@ -1,4 +1,4 @@
-https://github.com/sindresorhus/grunt-sass
+//https://github.com/sindresorhus/grunt-sass
 
 module.exports = {
     options: {
@@ -18,7 +18,7 @@ module.exports = {
         	cwd: '<%= paths.sourcedir %>Scss/',                  
        		src: ['**/*.scss'],   
         	dest: '<%= paths.destinationdir %>Assets/Css/', 
-        	ext: '.css'                
+        	ext: '.temp.css'                
     	}]	
 	}
 };
