@@ -10,7 +10,7 @@ module.exports = {
 
     all:{
     	options:{
-			map: true, 
+			map: true,
       map: {
           inline: false
       },
@@ -52,7 +52,7 @@ module.exports = {
 			    	},
 
 
-				    // use only images inside Img_sprites
+				    // use only images inside Sprites
 					filterBy: function(image) {
 					        
 				        if (!/Sprites\//.test(image.url)) {
@@ -64,6 +64,10 @@ module.exports = {
 				
 		    ]			
     	},
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 0f1043c45b7eb308cd85668057f94e87a7751414
 	    files:[{
         	expand: true,                  
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
@@ -86,7 +90,11 @@ module.exports = {
 	    files:[{
         	expand: true,                  
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
+<<<<<<< HEAD
        		src: ['**/*.css','!**/*.min.css','!**/*.temp.css'],   
+=======
+       		src: ['**/*.css','!**/*.temp.css'],   
+>>>>>>> 0f1043c45b7eb308cd85668057f94e87a7751414
         	dest: '<%= paths.deploydir %>Assets/Css/', 
         	ext: '.min.css'                
     	}]

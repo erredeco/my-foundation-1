@@ -24,6 +24,13 @@ module.exports = {
     tasks: ['sass','newer:sass','postcss:all','newer:postcss:all']
 
   },
+ // I hope this is useless 
+ // postcss: {
+ //   cwd:'<%= paths.destinationdir %>Assets/Css/',   
+ //   files: '**/*.temp.css', 
+ //   tasks: ['postcss:all','newer:postcss:all']
+ //},
+
   assemble: {
     files: ['<%= paths.templatesdir %>{includes,pages,layouts}/**/*.html','<%= paths.datadir %>*.json'],
     tasks: ['assemble','newer:assemble'],
