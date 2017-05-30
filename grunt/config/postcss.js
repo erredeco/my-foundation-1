@@ -64,10 +64,6 @@ module.exports = {
 				
 		    ]			
     	},
-<<<<<<< HEAD
-=======
-      
->>>>>>> 0f1043c45b7eb308cd85668057f94e87a7751414
 	    files:[{
         	expand: true,                  
         	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
@@ -89,12 +85,8 @@ module.exports = {
 
 	    files:[{
         	expand: true,                  
-        	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
-<<<<<<< HEAD
+        	cwd: '<%= paths.destinationdir %>Assets/Css/',
        		src: ['**/*.css','!**/*.min.css','!**/*.temp.css'],   
-=======
-       		src: ['**/*.css','!**/*.temp.css'],   
->>>>>>> 0f1043c45b7eb308cd85668057f94e87a7751414
         	dest: '<%= paths.deploydir %>Assets/Css/', 
         	ext: '.min.css'                
     	}]
