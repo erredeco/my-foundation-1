@@ -18,7 +18,7 @@ module.exports = {
         	cwd: '<%= paths.sourcedir %>Scss/',                  
        		src: ['**/*.scss'],   
         	dest: '<%= paths.destinationdir %>Assets/Css/', 
-        	ext: '.css'                
+        	ext: '.temp.css'                
     	}]	
 	}
 };

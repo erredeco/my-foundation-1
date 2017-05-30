@@ -21,15 +21,9 @@ module.exports = {
 
   sass: {
     files: '<%= paths.sourcedir %>Scss/**/*.scss',
-    tasks: ['sass','newer:sass']
+    tasks: ['sass','newer:sass','postcss:all','newer:postcss:all']
 
   },
-  postcss: {
-    files: '<%= paths.destinationdir %>Assets/Css/*.css',
-    tasks: ['postcss:all','newer:postcss:all']
-
-  },
-
   assemble: {
     files: ['<%= paths.templatesdir %>{includes,pages,layouts}/**/*.html','<%= paths.datadir %>*.json'],
     tasks: ['assemble','newer:assemble'],
