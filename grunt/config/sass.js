@@ -7,8 +7,8 @@ module.exports = {
         sourceMap: true,
         sourceComments:true,
         includePaths:  [
-            '<%= paths.vendor %>foundation-sites/scss',
-            '<%= paths.vendor %>motion-ui/src'
+            '<%= paths.nodemodules %>foundation-sites/scss/',
+            '<%= paths.nodemodules %>motion-ui/src/'
             ],		
     },
 

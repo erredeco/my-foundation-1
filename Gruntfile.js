@@ -8,7 +8,6 @@ module.exports = function(grunt) {
     paths: {
       //Paths for the external components
       nodemodules: grunt.file.readJSON('.noderc').directory + '/',
-      vendor: grunt.file.readJSON('.bowerrc').directory + '/',
 
       //Local paths
       bckdir: './BCK/',

@@ -4,7 +4,6 @@
 #updates all grunt dependencies (including foundation)
 update:
   - 'devUpdate:main'
-  - 'bower:install'
 
 cleaner:
   - 'clean'

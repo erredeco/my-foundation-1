@@ -3,7 +3,7 @@
 module.exports = {
   dist: {
     files: [{
-      src: '<%= paths.vendor %>jquery/dist/jquery.min.js',
+      src: '<%= paths.nodemodules %>jquery/dist/jquery.min.js',
       dest:'<%= paths.destinationdir %>Assets/Js/Vendor/jquery.min.js'
     },
     {         
