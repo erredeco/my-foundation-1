@@ -21,7 +21,6 @@ build:
   - 'modernizr'
   - 'copy:dist'
   - 'concat:foundation'
-  - 'babel:foundation'
   - 'concat:all'
   - 'sass'
   - 'postcss:all'

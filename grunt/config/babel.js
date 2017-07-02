@@ -1,4 +1,5 @@
 //https://github.com/babel/grunt-babel
+//Not used anymore, just keep it for a while
 
 module.exports = {
     options: {

@@ -17,8 +17,6 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 
 `npm install` (*)
 
-`grunt bower:install`
-
 `grunt` to create all
 
 `grunt server` to fire the server
@@ -121,123 +119,48 @@ Due to a limitation of grunt-postcss, we had to include the "dist" path into the
 
 
 **Inclusion of the foundation js files
+All files are included inside the files.json file;
+By default, I include the complete foundation file. If you need only a _partial_ inclusion, you have to modify the array `"foundationjs"` in this way:
+This is the complete list;
 
-All files are included inside the files.json file, in the correct inclusion order. If you need only a _partial_ inclusion, refer to this documentation (ONE DAY I WILL USE THIS MAP TO INCLUDE THE FILES!):
+Look at the online documentation for what to include depending on the plugins you use.
+Beware that all plugins require `foundation.core.js` and `foundation.util.mediaQuery.js` to be loaded _first._
+
+Also beware that if you include everything and uglify it, the total file is _BIGGER_ that the one in 
+
+`<%= paths.nodemodules %>foundation-sites/dist/js/foundation.js` so... I have warned you! ;)
+
+```
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.core.js",    
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.box.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.keyboard.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js",      
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.motion.js",        
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.nest.js",   
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.touch.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.triggers.js",               
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.abide.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.accordion.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.accordionMenu.js",    
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.drilldown.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.dropdown.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.dropdownMenu.js",    
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.equalizer.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.interchange.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.magellan.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.offcanvas.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.orbit.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveMenu.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveToggle.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.reveal.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.slider.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.sticky.js",    
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.tabs.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.toggler.js",   
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.tooltip.js",
+    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveAccordionTabs.js"
+```
+
 look also at node_modules/foundation-sites/customizer/config.yml
 
-```
-{
-  "abide":[
-    "foundation.abide.js"
-  ],
-  
-  "accordion": [
-    "foundation.accordion.js",    
-      "foundation.util.keyboard.js",
-      "foundation.util.motion.js"
-  ],
-  "accordionMenu": [
-    "foundation.accordionMenu.js",  
-      "foundation.util.keyboard.js",
-      "foundation.util.motion.js",
-      "foundation.util.nest.js"
-  ],
-  "drilldown": [
-    "foundation.drilldown.js",
-      "foundation.util.keyboard.js",
-      "foundation.util.motion.js",
-      "foundation.util.nest.js"
-  ],
-  
-  "dropdown": [
-    "foundation.dropdown.js",
-      "foundation.util.keyboard.js",
-      "foundation.util.box.js",
-      "foundation.util.triggers.js"
-  ],  
-  
-  "dropdownMenu": [
-    "foundation.dropdownMenu.js",
-      "foundation.util.keyboard.js",
-      "foundation.util.motion.js",
-      "foundation.util.box.js",
-      "foundation.util.nest.js"
-  ],
-
-  "equalizer": [
-    "foundation.equalizer.js",    
-      "foundation.util.mediaQuery.js",  
-      "foundation.util.timerAndImageLoader.js",   
-  ],
-
-  "interchange": [
-    "foundation.interchange.js",  
-      "foundation.util.triggers.js",
-      "foundation.util.timerAndImageLoader.js"
-  ],
-  "magellan": [
-    "foundation.util.motion.js"
-  ],
-  "offcanvas": [
-    "foundation.offcanvas.js"
-  ],
-  "orbit": [
-    "foundation.orbit.js",  
-      "foundation.util.motion.js",
-      "foundation.util.timerAndImageLoader.js",
-      "foundation.util.keyboard.js",
-      "foundation.util.touch.js"
-  ],
-  "responsiveMenu": [
-    "foundation.responsiveMenu.js",    
-      "foundation.util.triggers.js",
-      "foundation.util.mediaQuery.js"
-  ],
-  "responsiveToggle": [
-    "foundation.responsiveToggle.js",  
-      "foundation.util.mediaQuery.js"
-  ],
-  "reveal": [
-    "foundation.reveal.js",  
-      "foundation.util.box.js",
-      "foundation.util.motion.js",
-      "foundation.util.triggers.js",
-      "foundation.util.mediaQuery.js",
-      "foundation.util.keyboard.js"      
-  ],
-  "slider": [
-    "foundation.slider.js",  
-      "foundation.util.box.js",
-      "foundation.util.motion.js",
-      "foundation.util.triggers.js",
-      "foundation.util.mediaQuery.js",
-      "foundation.util.keyboard.js" 
-  ],
-  "sticky": [
-    "foundation.sticky.js",    
-      "foundation.util.triggers.js",
-      "foundation.util.mediaQuery.js"
-  ],
-  "tabs": [
-    "foundation.tabs.js",    
-      "foundation.util.keyboard.js",
-      "foundation.util.timerAndImageLoader.js"
-  ],
-  "toggler": [
-    "foundation.toggler.js",     
-      "foundation.util.motion.js"
-  ],
-  "tooltip": [
-    "foundation.tooltip.js",       
-      "foundation.util.box.js",
-      "foundation.util.triggers.js",
-      "foundation.util.mediaQuery.js",
-      "foundation.util.motion.js"
-  ],
-}
-```
-It seems that
-- core
-- foundation.zf.responsiveAccordionTabs
-
-are always present
