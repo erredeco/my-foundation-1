@@ -45,7 +45,6 @@ module.exports = function(grunt) {
     data: project,
     jitGrunt: {
       staticMappings: {
-        bower: 'grunt-bower-task'
       }
     }
   });
