@@ -1,17 +1,19 @@
 // https://github.com/gruntjs/grunt-contrib-uglify
 
+var conf = require('../../configuration.json');
+
 module.exports = {
     options: {
-        preserveComments: false,
-        compress: true,
-        beautify: false
+        preserveComments: conf.uglify.preserveComments,
+        compress: conf.uglify.compress,
+        beautify: conf.uglify.beautify
     },                      
     js: {
       files:[{ 
           expand: true,
-          cwd: '<%= paths.destinationdir %>Assets/Js/',
+          cwd: conf.paths.destinationdir+'Assets/Js/',
           src: ['*.js','!**/*.min.js'],
-          dest: '<%= paths.deploydir %>Assets/Js/',   
+          dest: conf.paths.deploydir+'Assets/Js/',   
           ext: '.min.js'
         }] 
   }

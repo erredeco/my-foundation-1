@@ -1,17 +1,20 @@
 // https://github.com/gruntjs/grunt-contrib-imagemin
+
+var conf = require('../../configuration.json');
+
 module.exports = {
 	imagemin: {
       options: {                       
-        optimizationLevel: 3,
+        optimizationLevel: conf.imagemin.optimizationLevel,
         svgoPlugins: [{ removeViewBox: false }]
       },
 
                      
     files: [{
         expand: true,                  
-        cwd: '<%= paths.destinationdir %>Assets/',                  
+        cwd: conf.paths.destinationdir+'Assets/',                  
         src: ['Images/**/*.{png,jpg,gif,svg,jpeg}'],   
-        dest: '<%= paths.deploydir %>Assets/'                 
+        dest: conf.paths.deploydir+'Assets/'                 
     }]
 
 

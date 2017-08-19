@@ -22,7 +22,7 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 `grunt server` to fire the server
 
 
-in the main folder, create a file called deploy.json; the file *must* contain the following lines:
+in the main folder, create a file called localconfiguration.json; the file *must* contain the following lines:
 
 ```
 {
@@ -107,10 +107,10 @@ Due to a limitation of grunt-postcss, we had to include the "dist" path into the
 	- launch server
 
 - grunt deploy
-	- optimizes css via nano 
-  - optimizes js via uglify
-  - optimizes images via imagemin
-  - copies all relevant files, including the js already optimized into the deploy folder.	
+    - optimizes css via nano 
+    - optimizes js via uglify
+    - optimizes images via imagemin
+    - copies all relevant files, including the js already optimized into the deploy folder.	
 
 
 
@@ -120,7 +120,7 @@ Due to a limitation of grunt-postcss, we had to include the "dist" path into the
 
 **Inclusion of the foundation js files
 All files are included inside the files.json file;
-By default, I include the complete foundation file. If you need only a _partial_ inclusion, you have to modify the array `"foundationjs"` in this way:
+By default, I include the complete foundation file. If you need only a _partial_ inclusion, you have to modify the array `"app"` in this way:
 This is the complete list;
 
 Look at the online documentation for what to include depending on the plugins you use.

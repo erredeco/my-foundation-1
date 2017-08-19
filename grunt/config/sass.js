@@ -1,23 +1,23 @@
 //https://github.com/sindresorhus/grunt-sass
 
+var conf = require('../../configuration.json');
+var files = require('../../files.json');
+
+
 module.exports = {
     options: {
-        // Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.
-        outputStyle:'expanded',
-        sourceMap: true,
-        sourceComments:true,
-        includePaths:  [
-            '<%= paths.nodemodules %>foundation-sites/scss/',
-            '<%= paths.nodemodules %>motion-ui/src/'
-            ],		
+        outputStyle: conf.sass.outputStyle,
+        sourceMap: conf.sass.sourceMap,
+        sourceComments: conf.sass.sourceComments,
+        includePaths: files.sass.includePaths
     },
 
 	dist: {
 	    files:[{
         	expand: true,                  
-        	cwd: '<%= paths.sourcedir %>Scss/',                  
+        	cwd: conf.paths.sourcedir+'Scss/',                  
        		src: ['**/*.scss'],   
-        	dest: '<%= paths.destinationdir %>Assets/Css/', 
+        	dest: conf.paths.destinationdir+'Assets/Css/', 
         	ext: '.temp.css'                
     	}]	
 	}

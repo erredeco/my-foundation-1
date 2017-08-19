@@ -1,19 +1,17 @@
 // https://github.com/gruntjs/grunt-contrib-concat
 
+var conf = require('../../configuration.json');
+var files = require('../../files.json');
+
 module.exports = { 
     options: {
         sourceMap: false
     }, 
-  	foundation: {
-    	files:[{
-      		src: ['<%= files.foundationjs %>'], 
-      		dest: '<%= paths.tempjsdir %>foundation.all.js'
-      	}]
-	},
+
 	all: {
 		files:[{
-			src: ['<%= files.appjs %>'], 
-			dest: '<%= paths.destinationdir %>Assets/Js/all.js'
+			src: files.js.app, 
+			dest: conf.paths.destinationdir+'Assets/Js/all.js'
 		}]
 
 	}

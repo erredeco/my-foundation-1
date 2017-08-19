@@ -1,16 +1,36 @@
 {
+    "sass":{
+        "includePaths":[
+            "<%= paths.nodemodules %>foundation-sites/scss/",
+            "<%= paths.nodemodules %>motion-ui/src/"
+        ]
+    },
 
-  "foundationjs":[
-    "<%= paths.nodemodules %>foundation-sites/dist/js/foundation.js"
-  ],
+    "js":{
+        "vendor":[
+            "<%= paths.nodemodules %>jquery/dist/jquery.min.js"
+        ],
 
-  "appjs":[
-    "<%= paths.nodemodules %>what-input/dist/what-input.js",
-    "<%= paths.tempjsdir %>foundation.all.js", 
-    "<%= paths.nodemodules %>motion-ui/dist/motion-ui.js",  
-    "<%= paths.sourcedir %>Assets/Js/app.js"   
-  ],
-  "filestoexcludefromcopy":[
+        "modernizr":{
+            "//":"qualsiasi test tu voglia includere, devi andare in https://modernizr.com/download e NON FIDARTI",
+            "//":"del codice generato! è meglio che tu vada sull'esempio in codepen a copiarti come si chiama il test",
+            "//":"alla riga: * http://modernizr.com/download/?-WHATEVER !*/",
+            "tests": [          
+            ],
+            "options": [
+                "setClasses"
+            ]
+        },
+
+        "app":[
+            "<%= paths.nodemodules %>what-input/dist/what-input.js",
+            "<%= paths.nodemodules %>foundation-sites/dist/js/foundation.js",
+            "<%= paths.nodemodules %>motion-ui/dist/motion-ui.js",  
+            "<%= paths.sourcedir %>Assets/Js/app.js"   
+        ]
+    },
+
+  "excludefromcopy":[
     "!Js/all.js"
   ]
 }

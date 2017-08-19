@@ -1,5 +1,6 @@
 // https://github.com/gruntjs/grunt-contrib-watch
 
+var conf = require('../../configuration.json');
 
 module.exports = {
   grunt: {
@@ -10,29 +11,29 @@ module.exports = {
     tasks: 'build'
   },
   js: {
-    files: ['<%= paths.sourcedir %>Assets/Js/**/*.js', './files.json'],
-    tasks: ['concat','newer:concat','babel']       
+    files: [conf.paths.sourcedir+'Assets/Js/**/*.js', './files.json'],
+    tasks: ['concat','newer:concat']       
   },
   
   modernizr:{
-    files: ['./grunt/config/modernizr.js'], 
+    files: ['./file.json'], 
     tasks: ['modernizr']
   },
 
   sass: {
-    files: '<%= paths.sourcedir %>Scss/**/*.scss',
+    files: conf.paths.sourcedir+'Scss/**/*.scss',
     tasks: ['sass','newer:sass','postcss:all','newer:postcss:all']
 
   },
  // I hope this is useless 
  // postcss: {
- //   cwd:'<%= paths.destinationdir %>Assets/Css/',   
+ //   cwd:conf.paths.destinationdir+'Assets/Css/',   
  //   files: '**/*.temp.css', 
  //   tasks: ['postcss:all','newer:postcss:all']
  //},
 
   assemble: {
-    files: ['<%= paths.templatesdir %>{includes,pages,layouts}/**/*.html','<%= paths.datadir %>*.json'],
+    files: [conf.assemble.templatesdir+'{includes,pages,layouts}/**/*.html',conf.assemble.datadir+'*.json'],
     tasks: ['assemble','newer:assemble'],
     options: {
       livereload: true
@@ -41,7 +42,7 @@ module.exports = {
 
   assets: {
     options: {
-      cwd: '<%= paths.sourcedir %>Assets/',
+      cwd: conf.paths.sourcedir+'Assets/',
       livereload: true
     },
     files: ['**/*', '!{Js}/**/*'],

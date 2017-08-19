@@ -1,29 +1,30 @@
 // https://github.com/assemble/assemble/
 
+var conf = require('../../configuration.json');
+
 module.exports = {
   dist: {
     options: {
       site: {
-        base: '<%= paths.destinationdir %>pages'
+        base: conf.paths.destinationdir+'pages'
       }, 
-      assets: '<%= paths.destinationdir %>/Assets',
+      assets: conf.paths.destinationdir+'Assets',
       
       //if you want to retrieve data from files
-      //data: ['<%= paths.datadir %>*.{json,yml}', 'package.json'],
+      //data: [conf.assemble.datadir+'*.{json,yml}', 'package.json'],
       
       flatten: false,
       
       //non so se serve
-      helpers: ['handlebars-helpers','handlebars-helper-rel','<%= paths.sourcedir %>assets/helpers/*.js'],
-      
+      helpers: ['handlebars-helpers','handlebars-helper-rel',conf.paths.sourcedir+'Assets/helpers/*.js'],      
       layout: 'index.html',      
-      layoutdir: '<%= paths.templatesdir %>layouts',
-      partials: ['<%= paths.templatesdir %>includes/**/*.{html,hbs}']
+      layoutdir: conf.assemble.templatesdir+'layouts',
+      partials: [conf.assemble.templatesdir+'includes/**/*.{html,hbs}']
 
     },
     expand: true,
-    cwd:  '<%= paths.templatesdir %>pages',
+    cwd:  conf.assemble.templatesdir+'pages',
     src:  '**/*.{html,md}',
-    dest: '<%= paths.destinationdir %>pages/'
+    dest: conf.paths.destinationdir+'pages/'
   }
 };

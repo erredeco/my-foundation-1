@@ -10,14 +10,9 @@ module.exports = function(grunt) {
       nodemodules: grunt.file.readJSON('.noderc').directory + '/',
 
       //Local paths
-      bckdir: './BCK/',
-      datadir: '<%= paths.sourcedir %>Data',
       // see README!!!!
-      deploydir: grunt.file.readJSON('configuration.json').deploydir,
-      destinationdir: './dist/',
-      sourcedir: './source/',
-      tempjsdir:'<%= paths.sourcedir %>Assets/Js/temp/',
-      templatesdir:'<%= paths.sourcedir %>Templates/',
+      deploydir: grunt.file.readJSON('localconfiguration.json').deploydir,
+      sourcedir: grunt.file.readJSON('configuration.json').paths.sourcedir,
 
       get config() {
         return this.grunt + 'config/';
@@ -29,13 +24,8 @@ module.exports = function(grunt) {
         return project.paths.config + '*.js';
       },
       grunt: 'Gruntfile.js',
-      
-      //Define all files in files.json
-      foundationjs: grunt.file.readJSON('files.json').foundationjs,
-      appjs:  grunt.file.readJSON('files.json').appjs,
-      filestoexcludefromcopy: grunt.file.readJSON('files.json').filestoexcludefromcopy,
-
     },
+    
     pkg: grunt.file.readJSON('package.json')
   };
 

@@ -1,0 +1,54 @@
+{
+
+	"paths":{
+		"bckdir": "./BCK/",
+		"deploydir":"<%=paths.deploydir%>",
+		"destinationdir":"./dist/",
+		"sourcedir": "./source/"
+	},
+
+	"//":"confguration for the assemble task",
+	"assemble":{
+		"datadir":"./source/Data/",
+		"templatesdir":"./source/Templates/"
+	},	
+
+	"//":"confguration for the connect task",
+	"connect":{
+		"port":"8090",
+		"host":"localhost"
+	},
+
+	"//":"confguration for the imagemin task",
+	"imagemin":{
+		"optimizationLevel":3
+	},
+
+	"//":"confguration for the modernizr task",
+	"modernizr":{
+		"uglify": true
+	},
+
+	"//":"confguration for the postcss task",
+	"postcss":{
+		"autoprefixer":["last 2 versions", "ie >= 9", "and_chr >= 2.3"]
+	},
+
+	"//":"confguration for the sass task",
+	"sass":{
+		"//":"Possible values for `sassOutputStyle` : `nested`, `expanded`, `compact`, `compressed`.",
+		"outputStyle":"expanded",
+		"sourceMap": true,
+        "sourceComments":true
+	},
+	"//":"confguration for the uglify task",
+	"uglify":{
+        "preserveComments": false,
+        "compress": true,
+        "beautify": false		
+
+
+	}
+
+
+}

@@ -5,6 +5,8 @@
 // https://github.com/ben-eb/cssnano
 var postcss = require('postcss');
 var updateRule = require('postcss-sprites/lib/core').updateRule;
+  
+var conf = require('../../configuration.json');
 
 module.exports = {
 
@@ -16,7 +18,7 @@ module.exports = {
       },
 		    processors: [
 		        require('autoprefixer')({
-		        	browsers: ['last 2 versions', 'ie >= 9', 'and_chr >= 2.3']
+		        	browsers: conf.postcss.autoprefixer	
 		        }),
 		        
 		        require('postcss-assets')({
@@ -26,12 +28,12 @@ module.exports = {
 		        	// does not work with <%= paths.destinationdir %>
 		        	// https://github.com/borodean/postcss-assets/issues/66
 		        	// http://stackoverflow.com/questions/42602482/configure-grunt-postcss-assets-paths-relative
-		        	basePath:'./dist/Assets/'
+		        	basePath: conf.paths.destinationdir+'Assets/'
 		        }),
 
 		        require('postcss-sprites')({
 				    // does not work with <%= paths.destinationdir %>
-				    spritePath: './dist/Assets/Sprites/',
+				    spritePath: conf.paths.destinationdir+'Assets/Sprites/',
 					retina: true,
 					hooks: {	
 				        onUpdateRule: function(rule, token, image) {
@@ -66,9 +68,9 @@ module.exports = {
     	},
 	    files:[{
         	expand: true,                  
-        	cwd: '<%= paths.destinationdir %>Assets/Css/',                  
+        	cwd: conf.paths.destinationdir+'Assets/Css/',                  
        		src: '**/*.temp.css',  
-        	dest: '<%= paths.destinationdir %>Assets/Css/', 
+        	dest: conf.paths.destinationdir+'Assets/Css/', 
         	ext: '.css'                
     	}]
     },
@@ -85,9 +87,9 @@ module.exports = {
 
 	    files:[{
         	expand: true,                  
-        	cwd: '<%= paths.destinationdir %>Assets/Css/',
+        	cwd: conf.paths.destinationdir+'Assets/Css/',
        		src: ['**/*.css','!**/*.min.css','!**/*.temp.css'],   
-        	dest: '<%= paths.deploydir %>Assets/Css/', 
+        	dest: conf.paths.destinationdir+'Assets/Css/', 
         	ext: '.min.css'                
     	}]
     }

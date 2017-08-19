@@ -4,12 +4,12 @@
 *.sublime-project
 *.log
 prova.*
-configuration.json
+localconfiguration.json
 
 dist
 BCK
 bower_components
 node_modules
-source/assets/js/vendor/*
-source/assets/js/temp/*
+source/Assets/Js/vendor/*
+source/Assets/Js/temp/*
 

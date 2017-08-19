@@ -1,14 +1,16 @@
 // https://github.com/jonschlinkert/grunt-prettify
 
+var conf = require('../../configuration.json');
+
 module.exports = {
   options: {
       config: '.prettifyrc'
     }, 
   all: {
       expand: true,
-      cwd: '<%= paths.destinationdir %>pages/',
+      cwd: conf.paths.destinationdir+'pages/',
       ext: '.html',
       src: ['./**/*.html'],
-      dest: '<%= paths.deploydir %>pages/'
+      dest: conf.paths.deploydir+'pages/'
     }
 };

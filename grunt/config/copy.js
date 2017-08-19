@@ -1,16 +1,23 @@
 // https://github.com/gruntjs/grunt-contrib-copy
 
+var conf = require('../../configuration.json');
+var files = require('../../files.json');
+
 module.exports = {
   dist: {
     files: [{
-      src: '<%= paths.nodemodules %>jquery/dist/jquery.min.js',
-      dest:'<%= paths.destinationdir %>Assets/Js/Vendor/jquery.min.js'
+      expand:true,
+      flatten:true,      
+      src: files.js.vendor,
+      dest: conf.paths.destinationdir+'Assets/Js/Vendor/',
+
+      filter: 'isFile'
     },
     {         
       expand:true,
-      cwd: '<%= paths.sourcedir %>Assets/',
+      cwd: conf.paths.sourcedir+'Assets/',
       src: ['**/*', '!Js/**/*'],
-      dest:'<%= paths.destinationdir %>Assets/',  
+      dest: conf.paths.destinationdir+'Assets/',  
       filter: 'isFile'
     }]
   },
@@ -20,23 +27,23 @@ module.exports = {
   backup: { 
     files: [{
       expand:true, 
-      cwd: '<%= paths.sourcedir %>', 
+      cwd: conf.paths.sourcedir, 
       src: ['./**/*.*'], 
-      dest:'<%= paths.bckdir %><%= date%>-version<%= pkg.version%>/source/'
+      dest:conf.paths.bckdir+'<%= date%>-version<%= pkg.version%>/source/'
     }]
   },
   
   deploy: {    
     files: [{
       expand:true, 
-      cwd: '<%= paths.destinationdir %>Assets/',
+      cwd: conf.paths.destinationdir+'Assets/',
       src: [
         '**/*',
         '!{Css,Images}/**/*',
-        '<%= files.filestoexcludefromcopy%>' //excluding here the files that are already processed by uglify!
+        files.excludefromcopy
         ], 
       filter: 'isFile',
-      dest:'<%= paths.deploydir %>Assets/'
+      dest: conf.paths.deploydir+'Assets/'
     }]  
   }
 };

@@ -1,21 +1,17 @@
 //https://github.com/modernizr/grunt-modernizr
 
+var conf = require('../../configuration.json');
+var files = require('../../files.json');
+
 module.exports = {
 	dist: {
-		"dest" : '<%= paths.destinationdir %>Assets/Js/Vendor/modernizr-custom.min.js',
+		"dest" : conf.paths.destinationdir+'Assets/Js/Vendor/modernizr-custom.min.js',
 		"parseFiles": false,
-		"customTests": [],
 		"devFile": false,
     	"crawl" : false,
-		//qualsiasi test tu voglia includere, devi andare in https://modernizr.com/download e NON FIDARTI 
-		// del codice generato! è meglio che tu vada sull'esempio in codepen a copiarti come si chiama il test
-		// alla riga: * http://modernizr.com/download/?-WHATEVER !*/
-		"tests": [    
-			],
-		"options": [
-		    "html5shiv",
-		    "setClasses"
-			],
-		"uglify": true
+    	"uglify": conf.modernizr.uglify,		
+		"customTests": [],
+		"tests": files.js.modernizr.tests,		
+		"options": files.js.modernizr.options
 	}
 };
