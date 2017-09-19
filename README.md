@@ -42,7 +42,7 @@ on Windows, you should put all the "Istances" of my-foundation-1  inside `C:\Pro
 
 ```
 {
-	"directory":"../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+	"deploydir":"../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/"
 }
 ```
 
@@ -53,7 +53,7 @@ e.g. `Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it`
 as the MAMP is in  `Users/riccardo/Sites/typo3.7.development.it/` the path deploydir must be:
 ```
 {
-	"directory":"../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+	"deploydir":"../../Sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
 }
 ```
 
