@@ -2,17 +2,18 @@
 // https://github.com/postcss/autoprefixer
 // https://github.com/borodean/postcss-assets
 // https://github.com/2createStudio/postcss-sprites
-// https://github.com/ben-eb/cssnano
+// removed - decide if re-use this after it becomes compatible with postcss v6 https://github.com/ben-eb/cssnano
+// https://github.com/jakubpawlowicz/clean-css
+// https://github.com/leodido/postcss-clean
+
 var postcss = require('postcss');
 var updateRule = require('postcss-sprites/lib/core').updateRule;
-  
 var conf = require('../../configuration.json');
 
 module.exports = {
 
     all:{
     	options:{
-			map: true,
       map: {
           inline: false
       },
@@ -77,10 +78,14 @@ module.exports = {
 
     deploy:{
     	options:{
-			map:  true, 
+        map: {
+          inline: false
+        },
 		    processors: [
-				require('cssnano')({
-					safe: true	
+				require('postcss-clean')({
+				  specialComments: false,
+          level: conf.postcss.optimizationLevel,
+          compatibility: 'ie9'    	
 				})
 		    ]			
     	},
@@ -89,7 +94,7 @@ module.exports = {
         	expand: true,                  
         	cwd: conf.paths.destinationdir+'Assets/Css/',
        		src: ['**/*.css','!**/*.min.css','!**/*.temp.css'],   
-        	dest: conf.paths.destinationdir+'Assets/Css/', 
+        	dest: conf.paths.deploydir+'Assets/Css/', 
         	ext: '.min.css'                
     	}]
     }

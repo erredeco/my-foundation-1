@@ -64,6 +64,7 @@
     "pngquant-bin": "^3.1.1",
     "postcss": "^6.0.11",
     "postcss-assets": "^5.0.0",
+    "postcss-clean": "^1.1.0",
     "postcss-sprites": "^4.2.1"
   }
 }
