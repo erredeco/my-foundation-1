@@ -2,7 +2,7 @@
     "sass":{
         "includePaths":[
             "<%= paths.nodemodules %>foundation-sites/scss/",
-            "<%= paths.nodemodules %>motion-ui/src/"
+            "<%= paths.nodemodules %>motion-ui/"
         ]
     },
 
