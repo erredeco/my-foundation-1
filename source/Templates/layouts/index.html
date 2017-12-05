@@ -6,27 +6,21 @@
 		{{>site-header-styles}}
 	</head>
 	<body>
-   <div class="off-canvas-wrapper">
-
-      <div class="off-canvas position-top" id="offCanvasTop" data-off-canvas>
-      <!-- Your menu or Off-canvas content goes here -->
-    </div>
-    
-    <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
-      <!-- Your menu or Off-canvas content goes here -->
-    </div>
-    <div class="off-canvas-content" data-off-canvas-content>
-		{{>header}}
-		
-    
-    {{>breadcrumbs}}
-		<button type="button" class="button" data-toggle="offCanvasTop">Open top</button>
-    <button type="button" class="button" data-toggle="offCanvasLeft">Open left</button>
-    {{>body}}
-		{{>site-footer-scripts}}
-    </div>
-  
-  
-   </div>
+        <div class="off-canvas-wrapper">
+            <div class="off-canvas position-top" id="offCanvasTop" data-off-canvas>
+                <!-- Your menu or Off-canvas content goes here -->
+            </div>
+            <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+                <!-- Your menu or Off-canvas content goes here -->
+            </div>
+            <div class="off-canvas-content" data-off-canvas-content>
+                {{>header}}
+                {{>breadcrumbs}}
+                <button type="button" class="button" data-toggle="offCanvasTop">Open top</button>
+                <button type="button" class="button" data-toggle="offCanvasLeft">Open left</button>
+                {{>body}}
+                {{>site-footer-scripts}}
+            </div>
+        </div>
 	</body>
 </html>
