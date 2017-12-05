@@ -3,11 +3,9 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 
 ##Installation instructions 
 
-####Install Grunt and Bower:  
+####Install Nodejs
 
-`npm install -g grunt-cli bower (*)`
-
-
+####Install yarn 
 
 
 ##copy from git
@@ -15,7 +13,7 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 
 ##Running instructions 
 
-`npm install` (*)
+`yarn install` (*)
 
 `grunt` to create all
 
