@@ -1,10 +1,6 @@
 # Grunt aliases
 ---
 
-#updates all grunt dependencies (including foundation)
-update:
-  - 'devUpdate:main'
-
 cleaner:
   - 'clean'
 #Backup things
