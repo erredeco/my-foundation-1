@@ -13,8 +13,7 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 
 ##Running instructions 
 
-`yarn install` (*)
-
+`yarn install` (1)
 `grunt` to create all
 
 `grunt server` to fire the server
@@ -85,9 +84,6 @@ a.pdf{
 
 }
 ```
-##IMPORTANT!!! 
-
-Due to a limitation of grunt-postcss, we had to include the "dist" path into the /grunt/postcss.js file!!
 
 ## available commands with grunt:
 
@@ -112,11 +108,11 @@ Due to a limitation of grunt-postcss, we had to include the "dist" path into the
 
 
 
-(*) run the command with "sudo " if it doesn't work
+(1) run the command with "sudo " if it doesn't work
 
 
 
-**Inclusion of the foundation js files
+## Inclusion of the foundation js files
 All files are included inside the files.json file;
 By default, I include the complete foundation file. If you need only a _partial_ inclusion, you have to modify the array `"app"` in this way:
 This is the complete list;
