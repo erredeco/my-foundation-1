@@ -2,14 +2,15 @@
 
 var conf = require('../../configuration.json');
 var files = require('../../files.json');
-
+const sass = require('node-sass');
 
 module.exports = {
     options: {
         outputStyle: conf.sass.outputStyle,
         sourceMap: conf.sass.sourceMap,
         sourceComments: conf.sass.sourceComments,
-        includePaths: files.sass.includePaths
+        includePaths: files.sass.includePaths,
+        implementation: sass
     },
 
 	dist: {
