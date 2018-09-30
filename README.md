@@ -158,3 +158,7 @@ Also beware that if you include everything and uglify it, the total file is _BIG
 
 look also at node_modules/foundation-sites/customizer/config.yml
 
+## Important!
+
+Rispetto alle versioni più vecchie, non so il perché, ma il terminale non mi dice più in che riga è avvenuto l'errore css.
+Nell'attesa che la cosa si risolva (o che tu passi a gulp) puoi usare questo fix temporaneo in grunt-sass https://github.com/sindresorhus/grunt-sass/pull/290/files
