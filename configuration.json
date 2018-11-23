@@ -31,7 +31,7 @@
 
 	"//":"configuration for the postcss task",
 	"postcss":{
-		"autoprefixer":["last 2 versions", "ie >= 9", "and_chr >= 2.3"],
+		"autoprefixer":["last 2 versions", "ie >= 9", "android >= 4.4", "ios >= 7"],
     "//":"Possible values for `optimizationLevel`: `0`(disabled),`1`,`2`(maximum, includes rules reordering)",
     "optimizationLevel":2 
 	},

@@ -22,7 +22,7 @@
   "homepage": "https://github.com/erredeco/my-foundation-1",
   "devDependencies": {
     "autoprefixer": "^9.3.1",
-    "foundation-sites": "^6.5.0",
+    "foundation-sites": "^6.5.1",
     "gifsicle": "^4.0.1",
     "grunt": "^1.0.3",
     "grunt-assemble": "^0.6.3",
