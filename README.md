@@ -1,5 +1,5 @@
 # my-foundation-1
-my foundation 1 is my first attempt to build a development enviroment using bower and grunt; it is still flawed
+my foundation 1 is my first attempt to build a development enviroment using npm and gulp; it is still flawed
 
 ##Installation instructions 
 
@@ -7,23 +7,28 @@ my foundation 1 is my first attempt to build a development enviroment using bowe
 
 ####Install yarn 
 
+#### `npm install -g gulp-cli`
+
 
 ##copy from git
 
 
 ##Running instructions 
 
-`yarn install` (1)
-`grunt` to create all
+`yarn install` or `npm install` if yarn has problems
 
-`grunt server` to fire the server
+`gulp` to create all the files and fire server
 
 
-in the main folder, create a file called localconfiguration.json; the file *must* contain the following lines:
+
+
+in the main folder, create a file called localconfiguration.js; the file *must* contain the following lines:
 
 ```
-{
-  "deploydir":"../../Mamp-sites/typo3.7.development.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+module.exports = {
+  PATHS:{
+      	'deploydir':'./deploytest/',
+  }
 }
 ```
 
@@ -38,8 +43,10 @@ on Windows, you should put all the "Istances" of my-foundation-1  inside `C:\Pro
  as the XAMPP is in "C:\xampp\htdocs\typo3.test7.it", the path deploydir must be:
 
 ```
-{
-	"deploydir":"../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/"
+module.exports = {
+  PATHS:{
+      	'deploydir':'../../xampp/htdocs/typo3.test7.it/typo3conf/ext/bhsiteconf/Resources/Public/',
+  }
 }
 ```
 
@@ -48,13 +55,17 @@ on MAC:  the "istances" of my-foundation-1 are: `Users/riccardo/Progetti/`
 e.g. `Users/riccardo/Progetti/Public_assets_for_typo3.7.development.it`
 
 as the MAMP is in  `Users/riccardo/Sites/typo3.9.development.it/web` the path deploydir must be:
+
 ```
-{
-	"deploydir":"../../Sites/typo3.7.development.it/web/typo3conf/ext/bhsiteconf/Resources/Public/"
+module.exports = {
+  PATHS:{
+      	'deploydir':'../../Sites/typo3.9.development.it/web/typo3conf/ext/bhsiteconf/Resources/Public/',
+  }
 }
+
 ```
 
-## About the postcss:main configuration
+## About the postcss configuration
 
 To emulate compass utilities like image-url and sprite generation, I have addes some postcss functions:
 
@@ -85,28 +96,22 @@ a.pdf{
 }
 ```
 
-## available commands with grunt:
+## available commands with gulp:
 
-- grunt clean
-	- deletes ./dist
+- `gulp`
+	- default task: shortcut for build all assets  & build pages
 
-- grunt build:assets
-	- 	concat the foundation assets from source and uglifies them in dist folder
-- grunt build:pages
-	- build pages and prettify them into dist folder
-- grunt
-	- default task: shortcut for build:assets & build:pages
+- `gulp backup`
+	- makes a backup
 
-- grunt server
-	- launch server
-
-- grunt deploy
-    - optimizes css via nano 
+- `gulp deploy`
+    - optimizes css 
     - optimizes js via uglify
-    - optimizes images via imagemin
+    - optimizes images via imagemin (not currently active)
     - copies all relevant files, including the js already optimized into the deploy folder.	
+    - please note that this command in fact DON'T actually optimizes the js! To do that use:
 
-
+- `gulp deploy --env production`
 
 (1) run the command with "sudo " if it doesn't work
 
@@ -122,43 +127,38 @@ Beware that all plugins require `foundation.core.js` and `foundation.util.mediaQ
 
 Also beware that if you include everything and uglify it, the total file is _BIGGER_ that the one in 
 
-`<%= paths.nodemodules %>foundation-sites/dist/js/foundation.js` so... I have warned you! ;)
+`node_modulesfoundation-sites/dist/js/foundation.js` so... I have warned you! ;)
 
 ```
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.core.js",    
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.box.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.keyboard.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.mediaQuery.js",      
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.motion.js",        
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.nest.js",   
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.touch.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.util.triggers.js",               
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.abide.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.accordion.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.accordionMenu.js",    
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.drilldown.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.dropdown.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.dropdownMenu.js",    
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.equalizer.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.interchange.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.magellan.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.offcanvas.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.orbit.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveMenu.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveToggle.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.reveal.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.slider.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.sticky.js",    
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.tabs.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.toggler.js",   
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.tooltip.js",
-    "<%= paths.nodemodules %>foundation-sites/dist/js/plugins/foundation.responsiveAccordionTabs.js"
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.core.js",    
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.box.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.keyboard.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.mediaQuery.js",      
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.motion.js",        
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.nest.js",   
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.timerAndImageLoader.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.touch.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.util.triggers.js",               
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.abide.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.accordion.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.accordionMenu.js",    
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.drilldown.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.dropdown.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.dropdownMenu.js",    
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.equalizer.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.interchange.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.magellan.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.offcanvas.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.orbit.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.responsiveMenu.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.responsiveToggle.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.reveal.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.slider.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.sticky.js",    
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.tabs.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.toggler.js",   
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.tooltip.js",
+    "node_modulesfoundation-sites/dist/js/plugins/foundation.responsiveAccordionTabs.js"
 ```
 
 look also at node_modules/foundation-sites/customizer/config.yml
-
-## Important!
-
-Rispetto alle versioni più vecchie, non so il perché, ma il terminale non mi dice più in che riga è avvenuto l'errore css.
-Nell'attesa che la cosa si risolva (o che tu passi a gulp) puoi usare questo fix temporaneo in grunt-sass https://github.com/sindresorhus/grunt-sass/pull/290/files
