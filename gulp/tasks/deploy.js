@@ -69,7 +69,7 @@ gulp.task('imagemin',function(){
 gulp.task('postcss:deploy',function(){
     var plugins = [
         clean({
-            level: CONFIG.POSTCSS.clean.optimizationlevel
+            level: CONFIG.POSTCSS.clean.optimizationLevel
         })
     ];
     return gulp.src(['*.css','!*.min.css' ], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Css/' })
