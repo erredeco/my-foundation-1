@@ -15,7 +15,15 @@ module.exports = {
   CONNECT:{
 		'port':'8092'
 	},
-    //Optimization level for the postcss-clean task: `0`(disabled),`1`,`2`(maximum, includes rules reordering);
+  
+  //Configuration for space linter
+  SPACELINTER:{
+    indentation: 'spaces',
+    spaces: 4
+  },
+
+
+  //Optimization level for the postcss-clean task: `0`(disabled),`1`,`2`(maximum, includes rules reordering);
   POSTCSS: {
     clean:{
         'optimizationLevel':2
@@ -33,18 +41,6 @@ module.exports = {
         'beautify': false,
         'mangle':true
 	},
-
-  REPLACE:{
-    'from':'../../Assets/Json/events.json',
-    'stagingmilano':'http://pre.unicatt.it/campuses-milan_2018/json_events.json',
-    'productionmilano':'http://unicatt.it/campuses-milan_2018/campuses-json_events.json',
-    'stagingbrescia':'http://pre.unicatt.it/campuses-brescia_2018/json_events.json',
-    'productionbrescia':'http://unicatt.it/campuses-brescia_2018/campuses-json_events.json',
-    'stagingroma':'http://pre.unicatt.it/campuses-rome_2018/json_events.json',
-    'productionroma':'http://unicatt.it/campuses-rome_2018/campuses-json_events.json',
-    'stagingpiacenzacremona':'http://pre.unicatt.it/campuses-piacenza_2018/json_events.json',
-    'productionpiacenzacremona':'http://unicatt.it/campuses-piacenza_2018/campuses-json_events.json'
-  },
 
   // Assets; this array is used in the "copy" task; it excludes Js folder
   ASSETS_FILES: [

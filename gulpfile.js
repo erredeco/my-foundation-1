@@ -30,7 +30,7 @@ gulp.task('watch', function() {
   gulp.watch('./source/Assets/**/*', gulp.series('copy','concat', browserReloadSync)); 
   gulp.watch('./source/Assets/Sprites/*.png', gulp.series('copy','sass',browserReloadSync));
   gulp.watch('./source/Templates/**/*', gulp.series('assemble', browserReloadSync));
-  gulp.watch(['./source/Scss/**/*.scss', 'node_modules/boostrap/scss/**/*'], gulp.series('sass', browserReloadSync));
+  gulp.watch(['./source/Scss/**/*.scss', 'node_modules/foundation-sites/scss/**/*'], gulp.series('sass', browserReloadSync));
 });
 
 gulp.task ('deploy',gulp.series('build:assets','deploy'));
