@@ -10,8 +10,10 @@ const gulp = require('gulp'),
       imagemin = require('gulp-imagemin'),
       uglify = require('gulp-uglify'),
       minimist = require('minimist'),
+      newer = require('gulp-newer'),
       CONFIG = require('../config.js'),
-      LOCALCONFIG = require('../../localconfiguration.js');
+      LOCALCONFIG = require('../../localconfiguration.js'),
+      imgdest = LOCALCONFIG.PATHS.deploydir+'/Assets/Images/';
 
 var knownOptions = {
   string: 'env',
@@ -48,6 +50,7 @@ gulp.task('uglify',function(){
 
 gulp.task('imagemin',function(){
     return gulp.src(['**/*.*'], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Images/' })
+      .pipe(newer(imgdest))
       .pipe(gulpif(cmloption.env === 'production', imagemin(
       [
         imagemin.gifsicle({interlaced: true}),
@@ -61,7 +64,7 @@ gulp.task('imagemin',function(){
             })
         ]
       ))) 
-      .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets/Images/'));
+      .pipe(gulp.dest(imgdest));
 });
 
 

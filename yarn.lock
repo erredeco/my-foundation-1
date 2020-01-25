@@ -3807,10 +3807,10 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
-foundation-sites@^6.6.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/foundation-sites/-/foundation-sites-6.6.0.tgz#7ce7133a2750d3553a45d11bc9cfb925ee928ea8"
-  integrity sha512-/KXP7rLOO8HvpxiW+uS9jJ2GiRDXj/OGe1W0UeCWv8t+sfxQkDVz4nXmFG4NUjuhEFMulMq/DlbdiqrFlAOpNQ==
+foundation-sites@^6.6.1:
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/foundation-sites/-/foundation-sites-6.6.1.tgz#79dce2f897cc08fafa7e8d56f5b0e88b51c45d38"
+  integrity sha512-4GrCL8L3osFJM6WCNRIQs5kGX5BCKNuO2zzQN68lUTblgpH7FUE28ctkbNFqoTnkUmWARj5VtiS3oQob3H0eZA==
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -4421,6 +4421,15 @@ gulp-match@^1.1.0:
   integrity sha512-DlyVxa1Gj24DitY2OjEsS+X6tDpretuxD6wTfhXE/Rw2hweqc1f6D/XtsJmoiCwLWfXgR87W9ozEityPCVzGtQ==
   dependencies:
     minimatch "^3.0.3"
+
+gulp-newer@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/gulp-newer/-/gulp-newer-1.4.0.tgz#25243ed6eac8f5462b95894e0d41937b112e65f3"
+  integrity sha512-h79fGO55S/P9eAADbLAP9aTtVYpLSR1ONj08VPaSdVVNVYhTS8p1CO1TW7kEMu+hC+sytmCqcUr5LesvZEtDoQ==
+  dependencies:
+    glob "^7.0.3"
+    kew "^0.7.0"
+    plugin-error "^0.1.2"
 
 gulp-plumber@^1.2.1:
   version "1.2.1"

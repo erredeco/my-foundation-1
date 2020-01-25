@@ -1,19 +1,23 @@
 const   gulp = require('gulp'),
         fs = require('fs'),
-        CONFIG = require('../config.js');
-
-var json = JSON.parse(fs.readFileSync('./package.json'));
-var versionDate = new Date().toISOString().slice(0,19).replace(/[^0-9]/g, "-");
+        newer = require('gulp-newer'),        
+        CONFIG = require('../config.js'),
+	 	json = JSON.parse(fs.readFileSync('./package.json')),
+	 	versionDate = new Date().toISOString().slice(0,19).replace(/[^0-9]/g, "-"),
+	 	dest = CONFIG.PATHS.destinationdir+'/Assets',
+	 	vendordest = CONFIG.PATHS.destinationdir+'/Assets/Js/Vendor';
 
 // Copies static assets
 gulp.task('copy', function() {
   return gulp.src(CONFIG.ASSETS_FILES)
-    .pipe(gulp.dest(CONFIG.PATHS.destinationdir+'/Assets'));
+  	.pipe(newer(dest))
+    .pipe(gulp.dest(dest));
 });
 
 gulp.task('copy-vendor-js', function() {
   return gulp.src(CONFIG.JS_VENDOR_FILES)
-    .pipe(gulp.dest(CONFIG.PATHS.destinationdir+'/Assets/Js/Vendor'));
+  	pipe(newer(vendordest))
+    .pipe(gulp.dest(vendordest));
 });
 
 //backup
