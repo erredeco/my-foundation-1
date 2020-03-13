@@ -46,7 +46,7 @@
     "imagemin": "^6.1.0",
     "jpegtran-bin": "^4.0.0",
     "jquery": "^3.4.1",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "motion-ui": "^2.0.3",
     "node-sass": "^4.12.0",
     "optipng-bin": "^6.0.0",
