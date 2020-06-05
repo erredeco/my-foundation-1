@@ -1,5 +1,7 @@
 'use strict';
 
+
+//Initialize var git
 const gulp = require('gulp'),
       gulpif = require('gulp-if'),
       postcss = require('gulp-postcss'),
@@ -13,7 +15,11 @@ const gulp = require('gulp'),
       newer = require('gulp-newer'),
       CONFIG = require('../config.js'),
       LOCALCONFIG = require('../../localconfiguration.js'),
-      imgdest = LOCALCONFIG.PATHS.deploydir+'/Assets/Images/';
+      imgdest = LOCALCONFIG.PATHS.deploydir+'/Assets/Images/',
+      git = require('git-rev-sync'),
+      pkg = require('../../package.json'),
+      header = require('gulp-header');
+
 
 var knownOptions = {
   string: 'env',
@@ -43,6 +49,7 @@ gulp.task('uglify',function(){
     return gulp.src(['*.js','!*.min.js'], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Js/' })
       .pipe(gulpif(cmloption.env === 'production', stripdebug()))
       .pipe(gulpif(cmloption.env === 'production', uglify(uglifyoptions)))
+      .pipe(header(CONFIG.BANNER, { pkg : pkg, git: git } ))        
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets/Js/'));
 });
@@ -77,6 +84,7 @@ gulp.task('postcss:deploy',function(){
     ];
     return gulp.src(['*.css','!*.min.css' ], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Css/' })
       .pipe(postcss(plugins))
+      .pipe(header(CONFIG.BANNER, { pkg : pkg, git: git } ))        
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets/Css/'));
 });

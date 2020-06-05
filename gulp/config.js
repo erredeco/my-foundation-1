@@ -11,6 +11,15 @@ module.exports = {
     'node_modules/motion-ui/'
   ],
 
+  BANNER: ['/**',
+  ' * @name <%= pkg.name %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @git last commit <%= git.long() %>',
+  ' */',
+  ''].join('\n')
+  ,
+  
+
   //some configs:
   CONNECT:{
 		'port':'8092'
