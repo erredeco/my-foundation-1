@@ -22,7 +22,7 @@
   "homepage": "https://github.com/erredeco/my-foundation-1",
   "devDependencies": {
     "assemble": "^0.24.3",
-    "autoprefixer": "^9.8.0",
+    "autoprefixer": "^9.8.2",
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
     "file-system": "^2.2.2",
@@ -48,7 +48,7 @@
     "handlebars": "^4.7.6",
     "handlebars-helpers": "^0.10.0",
     "imagemin": "^7.0.1",
-    "jpegtran-bin": "^4.0.0",
+    "jpegtran-bin": "^5.0.1",
     "jquery": "^3.5.1",
     "minimist": "^1.2.5",
     "motion-ui": "^2.0.3",
@@ -63,7 +63,7 @@
     "rimraf": "^3.0.2",
     "streamqueue": "^1.1.2",
     "vinyl-buffer": "^1.0.1",
-    "what-input": "^5.2.7"
+    "what-input": "^5.2.10"
   },
   "dependencies": {}
 }
