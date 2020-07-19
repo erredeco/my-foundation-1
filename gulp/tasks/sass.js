@@ -69,8 +69,7 @@ var spritesopts = {
     }                  
 };
 
-var plugins = [        
-    autoprefixer(), // uses ".browserslistrc" 
+var plugins = [         
     assets(assetsopts),
     sprites(spritesopts),
     sortMediaQuery(sortmediaqueryopts)    
@@ -96,6 +95,7 @@ gulp.task('app-css', function() {
     return streamqueue({ objectMode: true }, foundationcss , mycss)
         
         .pipe(concat('app.css'))
+        .pipe(gulppostcss([ autoprefixer() ])) // uses ".browserslistrc"; I use it here and not with the others to make it work with foundation, too
         .pipe(sourcemaps.write('.',{includeContent: false}))
         .pipe(gulp.dest(CONFIG.PATHS.destinationdir+'Assets/Css'));
 });
