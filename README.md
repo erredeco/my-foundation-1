@@ -59,7 +59,7 @@ as the MAMP is in  `Users/riccardo/Sites/typo3.9.development.it/web` the path de
 ```
 module.exports = {
   PATHS:{
-      	'deploydir':'../../Sites/typo3.9.development.it/web/typo3conf/ext/bhsiteconf/Resources/Public/',
+        'deploydir':'../../Siti/typo3.10.composer.it/packages/bhsiteconf/Resources/Public/',
   }
 }
 
