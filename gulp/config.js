@@ -44,12 +44,17 @@ module.exports = {
 		'optimizationLevel':3
 	},
 
-  UGLIFY:{
-        'comments': false,
-        'compress': true,
+  //Optimizations for the Terser 
+
+  TERSER:{
+        'comments': false, //can be false, 'some' or 'all'
+        'compress': true,  
         'beautify': false,
-        'mangle':true
-	},
+        'mangle':true,
+        'keep_classnames': false,
+        'keep_fnames': false
+  },
+
 
   // Assets; this array is used in the "copy" task; it excludes Js folder
   ASSETS_FILES: [

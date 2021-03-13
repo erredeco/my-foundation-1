@@ -10,7 +10,6 @@ const gulp = require('gulp'),
       stripdebug = require('gulp-strip-debug'),
       clean = require('postcss-clean'),
       imagemin = require('gulp-imagemin'),
-      uglify = require('gulp-uglify'),
       minimist = require('minimist'),
       newer = require('gulp-newer'),
       CONFIG = require('../config.js'),
@@ -18,22 +17,27 @@ const gulp = require('gulp'),
       imgdest = LOCALCONFIG.PATHS.deploydir+'/Assets/Images/',
       git = require('git-rev-sync'),
       pkg = require('../../package.json'),
-      header = require('gulp-header');
+      header = require('gulp-header'),
+      terser = require('terser'),
+      gulpTerser = require('gulp-terser');
 
 
 var knownOptions = {
   string: 'env',
   default: { env: process.env.NODE_ENV || 'staging' }
 };
-var cmloption = minimist(process.argv.slice(2), knownOptions);
-var uglifyoptions = {
-    output: {
-        comments: CONFIG.UGLIFY.comments,
-        beautify: CONFIG.UGLIFY.beautify
 
+var cmloption = minimist(process.argv.slice(2), knownOptions);
+
+var terseroptions = {    
+    format: {
+        beautify: CONFIG.TERSER.beautify,
+        comments: CONFIG.TERSER.comments,
     },
-    compress: CONFIG.UGLIFY.compress,
-    mangle: CONFIG.UGLIFY.mangle
+    compress:CONFIG.TERSER.compress, //in fact you should pass either false  or an object with the options - see terser documentation https://github.com/terser/terser#compress-options
+    mangle: CONFIG.TERSER.mangle,
+    keep_classnames: CONFIG.TERSER.keep_classnames,
+    keep_fnames: CONFIG.TERSER.keep_fnames
 };
 
 
@@ -42,13 +46,10 @@ gulp.task('copy:deploy', function() {
     .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets'));
 });
 
-
-
-
-gulp.task('uglify',function(){
+gulp.task('terser',function(){
     return gulp.src(['*.js','!*.min.js'], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Js/' })
       .pipe(gulpif(cmloption.env === 'production', stripdebug()))
-      .pipe(gulpif(cmloption.env === 'production', uglify(uglifyoptions)))
+      .pipe(gulpif(cmloption.env === 'production', gulpTerser(terseroptions, terser.minify)))
       .pipe(header(CONFIG.BANNER, { pkg : pkg, git: git } ))        
       .pipe(rename({ suffix: '.min' }))
       .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets/Js/'));
@@ -94,7 +95,7 @@ gulp.task('postcss:deploy',function(){
 
 gulp.task ('deploy',
     gulp.series(
-      'uglify',
+      'terser',
       'postcss:deploy',
       'copy:deploy'
     )
