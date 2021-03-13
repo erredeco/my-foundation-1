@@ -2,10 +2,10 @@ const   gulp = require('gulp'),
         fs = require('fs'),
         newer = require('gulp-newer'),        
         CONFIG = require('../config.js'),
-	 	json = JSON.parse(fs.readFileSync('./package.json')),
-	 	versionDate = new Date().toISOString().slice(0,19).replace(/[^0-9]/g, "-"),
-	 	dest = CONFIG.PATHS.destinationdir+'/Assets',
-	 	vendordest = CONFIG.PATHS.destinationdir+'/Assets/Js/Vendor';
+    	 	json = JSON.parse(fs.readFileSync('./package.json')),
+    	 	versionDate = new Date().toISOString().slice(0,19).replace(/[^0-9]/g, "-"),
+    	 	dest = CONFIG.PATHS.destinationdir+'/Assets',
+    	 	vendordest = CONFIG.PATHS.destinationdir+'/Assets/Js/Vendor';
 
 // Copies static assets
 gulp.task('copy', function() {

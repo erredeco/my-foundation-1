@@ -105,7 +105,7 @@ gulp.task('app-css', function() {
 
 gulp.task ('sass',
     gulp.series('app-css')
-                );
+);
 
 
 

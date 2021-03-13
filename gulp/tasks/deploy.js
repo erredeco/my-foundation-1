@@ -93,7 +93,9 @@ gulp.task('postcss:deploy',function(){
 //aggiungi imagemin dopo copy:deploy se vuoi
 
 gulp.task ('deploy',
-    gulp.series('uglify',
-                'postcss:deploy',
-                'copy:deploy')
-                );
+    gulp.series(
+      'uglify',
+      'postcss:deploy',
+      'copy:deploy'
+    )
+);
