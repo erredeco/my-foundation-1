@@ -57,10 +57,8 @@
 /// @param {String} $font-family - Name of the font family you want to use
 /// @param {String} $font-file - Name of the font files to include WITHOUT EXTENSION! I assume that all the font files (woff, etc) have the same filename
 /// We will use only the following formats:
-/// .eot (OLD IE, maybe will be removed in the future)
 /// .woff2 (still experimental, maybe can be removed)
 /// .woff (at the present time, all browsers use this)
-/// .otf (I don't think it is still needed)
 
 /// Usage example:
 /// @include font-face('Unicon LT',unicorn); (all files are unicorn.woff, etc)
@@ -69,9 +67,7 @@
 @mixin font-face($font-family,$font-file){
 	@font-face {
 	  font-family: $font-family;
-	  src:  font($font-file+'.eot?') format('eot'),
-	  		font($font-file+'.woff2') format('woff2'),
-			font($font-file+'.woff') format('woff'),
-	        font($font-file+'.otf') format('truetype')	       
+	  src:  font($font-file+'.woff2') format('woff2'),
+			font($font-file+'.woff') format('woff')    
 	}
 }
