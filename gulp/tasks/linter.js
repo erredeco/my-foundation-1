@@ -5,6 +5,6 @@ const	gulp = require("gulp"),
 
 gulp.task("htmllinter", function() {
     return gulp.src(CONFIG.PATHS.sourcedir+'Templates/**/*.html')
-        .pipe(lintspaces(CONFIG.SPACELINTER))
-        .pipe(lintspaces.reporter());
+	    .pipe(lintspaces(CONFIG.SPACELINTER))
+	    .pipe(lintspaces.reporter());
 });		

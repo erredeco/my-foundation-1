@@ -24,13 +24,13 @@
 
 
 @function image($file) {
- @return url(map-safe-get($relative-paths,Images)+ '/' + $file);
+	@return url(map-safe-get($relative-paths,Images)+ '/' + $file);
 }
 
 
 //se volessi utilizzarlo al porso di postcss-assets resolve: background: sprite('world.png') no-repeat 0 0;
 @function sprite($file) {
- @return url(map-safe-get($relative-paths,Sprites)+ '/' + $file);
+	@return url(map-safe-get($relative-paths,Sprites)+ '/' + $file);
 }
 
 
@@ -41,7 +41,7 @@
 /// @require {function} map-safe-get from Foundation
 
 @function font($file) {
- @return url(map-safe-get($relative-paths,Fonts)+ '/' + $file);
+	@return url(map-safe-get($relative-paths,Fonts)+ '/' + $file);
 }
 
 
