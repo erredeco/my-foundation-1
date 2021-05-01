@@ -48,7 +48,7 @@ module.exports = {
 
   TERSER:{
         'comments': false, //can be false, 'some' or 'all'
-        'compress': true,  
+        'compress': true,
         'beautify': false,
         'mangle':true,
         'keep_classnames': false,
