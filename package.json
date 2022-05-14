@@ -22,12 +22,12 @@
   "homepage": "https://github.com/erredeco/my-foundation-1",
   "devDependencies": {
     "assemble": "^0.24.3",
-    "autoprefixer": "^10.4.4",
+    "autoprefixer": "^10.4.7",
     "browser-sync": "^2.27.9",
     "del": "^6.0.0",
     "file-system": "^2.2.2",
     "foundation-sites": "^6.7.4",
-    "gifsicle": "^6.1.0",
+    "gifsicle": "^7.0.0",
     "git-rev-sync": "^3.0.2",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -55,7 +55,7 @@
     "node-sass": "^7.0.1",
     "optipng-bin": "^8.1.0",
     "pngquant-bin": "^7.0.2",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.13",
     "postcss-assets": "^6.0.0",
     "postcss-clean": "^1.2.2",
     "postcss-sort-media-queries": "^4.2.1",
@@ -63,9 +63,9 @@
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.2",
     "streamqueue": "^1.1.2",
-    "terser": "^5.12.1",
+    "terser": "^5.13.1",
     "vinyl-buffer": "^1.0.1",
-    "what-input": "^5.2.10"
+    "what-input": "^5.2.11"
   },
   "dependencies": {}
 }
