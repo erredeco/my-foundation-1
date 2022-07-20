@@ -63,7 +63,7 @@
     "require-dir": "^1.2.0",
     "rimraf": "^3.0.2",
     "streamqueue": "^1.1.2",
-    "terser": "^5.8.0",
+    "terser": "^5.14.2",
     "vinyl-buffer": "^1.0.1",
     "what-input": "^5.2.10"
   },
