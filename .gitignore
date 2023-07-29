@@ -5,6 +5,7 @@
 *.log
 prova.*
 localconfiguration.js
+my-foundation-1.code-workspace
 
 dist
 BCK
