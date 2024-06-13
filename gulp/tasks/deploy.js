@@ -1,15 +1,13 @@
 'use strict';
 
-
 //Initialize var git
 const   gulp = require('gulp'),
         gulpif = require('gulp-if'),
         postcss = require('gulp-postcss'),
         rename = require('gulp-rename'),
         replace = require('gulp-string-replace'),
-        stripdebug = require('gulp-strip-debug'),
+        // stripdebug = require('gulp-strip-debug'),
         clean = require('postcss-clean'),
-        imagemin = require('gulp-imagemin'),
         minimist = require('minimist'),
         newer = require('gulp-newer'),
         CONFIG = require('../config.js'),
@@ -48,34 +46,12 @@ gulp.task('copy:deploy', function() {
 
 gulp.task('terser',function(){
     return gulp.src(['*.js','!*.min.js'], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Js/' })
-        .pipe(gulpif(cmloption.env === 'production', stripdebug()))
+       // .pipe(gulpif(cmloption.env === 'production', stripdebug()))
         .pipe(gulpif(cmloption.env === 'production', gulpTerser(terseroptions, terser.minify)))
         .pipe(header(CONFIG.BANNER, { pkg : pkg, git: git } ))        
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(LOCALCONFIG.PATHS.deploydir+'/Assets/Js/'));
 });
-
-
-gulp.task('imagemin',function(){
-    return gulp.src(['**/*.*'], { cwd:CONFIG.PATHS.destinationdir+'/Assets/Images/' })
-        .pipe(newer(imgdest))
-        .pipe(gulpif(cmloption.env === 'production', imagemin(
-        [
-            imagemin.gifsicle({interlaced: true}),
-            imagemin.jpegtran({progressive: true}),
-            imagemin.optipng({optimizationLevel: CONFIG.IMAGEMIN.optimizationLevel}),
-            imagemin.svgo({
-                plugins: [
-                    {removeViewBox: false},
-                    {cleanupIDs: false}
-                    ]
-                })
-        ]
-        ))) 
-    .pipe(gulp.dest(imgdest));
-});
-
-
 
 gulp.task('postcss:deploy',function(){
     var plugins = [

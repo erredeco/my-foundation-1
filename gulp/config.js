@@ -39,10 +39,6 @@ module.exports = {
         }
 
     },
-    //Optimization level for the imagemin task;
-    IMAGEMIN :{
-		'optimizationLevel':3
-	},
 
     //Optimizations for the Terser 
 
